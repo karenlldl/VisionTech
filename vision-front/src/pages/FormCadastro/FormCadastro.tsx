@@ -17,15 +17,59 @@ const FormCadastro = () => {
   const [programaSelecionado, setProgramaSelecionado] =
     useState<Programa>("apolonias");
 
+  const [idade, setIdade] = useState("");
+  const [erroPrograma, setErroPrograma] = useState("");
+
   const [imagensSelecionadas, setImagensSelecionadas] = useState<string[]>([]);
   const [erroImagens, setErroImagens] = useState("");
 
   const isApolonias = programaSelecionado === "apolonias";
   const isDentistas = programaSelecionado === "dentistas";
 
+  const idadeInformada = idade.trim() !== "";
+  const idadeNumerica = Number(idade);
+
+  const dentistasBloqueado = idadeInformada && idadeNumerica > 17;
+
   const selectedCardClass = "border-[#f58200] bg-[#fffaf5]";
   const unselectedCardClass =
     "border-[#ded7d1] bg-white hover:border-[#f58200] hover:bg-[#fffaf5]";
+
+  const handleAlterarIdade = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const novaIdade = event.target.value;
+
+    setIdade(novaIdade);
+
+    const numero = Number(novaIdade);
+
+    if (programaSelecionado === "dentistas" && numero > 17) {
+      setProgramaSelecionado("apolonias");
+      setErroPrograma(
+        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+      );
+      return;
+    }
+
+    setErroPrograma("");
+  };
+
+  const handleSelecionarApolonias = () => {
+    setProgramaSelecionado("apolonias");
+    setErroPrograma("");
+  };
+
+  const handleSelecionarDentistas = () => {
+    if (dentistasBloqueado) {
+      setProgramaSelecionado("apolonias");
+      setErroPrograma(
+        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+      );
+      return;
+    }
+
+    setProgramaSelecionado("dentistas");
+    setErroPrograma("");
+  };
 
   const handleSelecionarImagens = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -38,9 +82,7 @@ const FormCadastro = () => {
       return;
     }
 
-    const imagens = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
+    const imagens = Array.from(files).map((file) => URL.createObjectURL(file));
 
     setImagensSelecionadas(imagens);
     setErroImagens("");
@@ -50,6 +92,14 @@ const FormCadastro = () => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
+    if (programaSelecionado === "dentistas" && idadeNumerica > 17) {
+      setProgramaSelecionado("apolonias");
+      setErroPrograma(
+        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+      );
+      return;
+    }
 
     if (imagensSelecionadas.length === 0) {
       setErroImagens("Envie pelo menos uma imagem antes de continuar.");
@@ -95,7 +145,7 @@ const FormCadastro = () => {
                     name="programa"
                     value="apolonias"
                     checked={isApolonias}
-                    onChange={() => setProgramaSelecionado("apolonias")}
+                    onChange={handleSelecionarApolonias}
                     required
                     className="sr-only"
                   />
@@ -116,16 +166,26 @@ const FormCadastro = () => {
                 </label>
 
                 <label
-                  className={`cursor-pointer rounded-xl border p-4 transition ${
+                  className={`rounded-xl border p-4 transition ${
                     isDentistas ? selectedCardClass : unselectedCardClass
+                  } ${
+                    dentistasBloqueado
+                      ? "cursor-not-allowed opacity-60"
+                      : "cursor-pointer"
                   }`}
+                  title={
+                    dentistasBloqueado
+                      ? "Disponível apenas para pessoas de até 17 anos."
+                      : ""
+                  }
                 >
                   <input
                     type="radio"
                     name="programa"
                     value="dentistas"
                     checked={isDentistas}
-                    onChange={() => setProgramaSelecionado("dentistas")}
+                    onChange={handleSelecionarDentistas}
+                    disabled={dentistasBloqueado}
                     required
                     className="sr-only"
                   />
@@ -141,10 +201,16 @@ const FormCadastro = () => {
                   </strong>
 
                   <span className="mt-1 block text-xs leading-snug text-[#6f625d]">
-                    Crianças e jovens de 11 a 17 anos em vulnerabilidade social
+                    Crianças e jovens de até 17 anos em vulnerabilidade social
                   </span>
                 </label>
               </div>
+
+              {erroPrograma && (
+                <p className="mt-2 text-xs font-semibold text-red-500">
+                  {erroPrograma}
+                </p>
+              )}
             </div>
 
             {/* Nome */}
@@ -180,6 +246,8 @@ const FormCadastro = () => {
                   type="number"
                   min="1"
                   required
+                  value={idade}
+                  onChange={handleAlterarIdade}
                   className="h-10 w-full rounded-lg border border-[#ded7d1] bg-white px-3 text-sm outline-none transition focus:border-[#f58200] focus:ring-2 focus:ring-[#f58200]/20"
                 />
               </div>

@@ -1,16 +1,14 @@
 import {
-  Heart,
   LayoutGrid,
   List,
   CalendarDays,
   BarChart3,
   UserPlus,
-  Stethoscope,
   ClipboardList,
   History,
   LogOut,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 type TipoUsuario = "admin" | "dentista";
 
@@ -48,13 +46,8 @@ const adminLinks = [
 
 const dentistaLinks = [
   {
-    label: "Meus pacientes",
-    path: "/dentista",
-    icon: Stethoscope,
-  },
-  {
     label: "Agenda",
-    path: "/dentista/agenda",
+    path: "/dentista",
     icon: CalendarDays,
   },
   {
@@ -70,29 +63,40 @@ const dentistaLinks = [
 ];
 
 const NavPlataformaInterna = ({ tipoUsuario }: NavPlataformaInternaProps) => {
-  const isAdmin = tipoUsuario === "admin";
+  const location = useLocation();
 
+  const isAdmin = tipoUsuario === "admin";
   const links = isAdmin ? adminLinks : dentistaLinks;
 
   const nomeUsuario = isAdmin ? "Administrador" : "Dra. Camila Santos";
-  const perfilUsuario = isAdmin ? "Perfil: Administrador" : "Perfil: Dentista voluntário";
+  const perfilUsuario = isAdmin
+    ? "Perfil: Administrador"
+    : "Perfil: Dentista voluntário";
 
   return (
     <header className="flex h-[68px] items-center justify-between border-b border-[#e4ded9] bg-white px-6">
       {/* Logo */}
       <Link
         to="/"
-        className="flex items-center gap-2"
+        className="flex items-center"
         aria-label="Voltar para a página inicial"
       >
-        <img className="h-3 w-10" src="img/logo-laranja.png" alt="Logo" />
+        <img
+          src="/img/logo-laranja.png"
+          alt="Vision"
+          className="h-8 w-auto object-contain"
+        />
       </Link>
 
       {/* Links */}
       <nav className="hidden items-center gap-2 md:flex">
-        {links.map((item, index) => {
+        {links.map((item) => {
           const Icon = item.icon;
-          const isActive = index === 0;
+
+          const isActive =
+            location.pathname === item.path ||
+            (item.path !== "/dentista" &&
+              location.pathname.startsWith(item.path));
 
           return (
             <Link

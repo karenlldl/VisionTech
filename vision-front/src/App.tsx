@@ -6,6 +6,8 @@ import CadastroEnviado from "./pages/CadastroEnviado/CadastroEnviado";
 import LoginPlataforma from "./pages/LoginPlataforma/LoginPlataforma";
 import Dentista from "./pages/Dentista/Dentista";
 import Admin from "./pages/Admin/Admin";
+import DentistaHistorico from "./pages/DentistaHistorico/DentistaHistorico";
+import DentistaAtendimentos from "./pages/DentistaAtendimentos/DentistaAtendimentos";
 
 
 function App() {
@@ -16,9 +18,12 @@ function App() {
         <Route path="/cadastro" element={<FormCadastro />} />
         <Route path="/cadastro-enviado" element={<CadastroEnviado />} />
         <Route path="/login" element={<LoginPlataforma />} />
-        
+
         <Route path="/admin" element={<Admin />} />
         <Route path="/dentista" element={<Dentista />} />
+        <Route path="/dentista/atendimentos" element={<DentistaAtendimentos />} />
+        <Route path="/dentista/historico" element={<DentistaHistorico />} />
+
       </Routes>
     </BrowserRouter>
   );
