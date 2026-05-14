@@ -23,11 +23,6 @@ const adminLinks = [
     icon: LayoutGrid,
   },
   {
-    label: "Fila",
-    path: "/admin/fila",
-    icon: List,
-  },
-  {
     label: "Agenda",
     path: "/admin/agenda",
     icon: CalendarDays,

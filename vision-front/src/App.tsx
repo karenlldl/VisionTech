@@ -8,6 +8,8 @@ import Dentista from "./pages/Dentista/Dentista";
 import Admin from "./pages/Admin/Admin";
 import DentistaHistorico from "./pages/DentistaHistorico/DentistaHistorico";
 import DentistaAtendimentos from "./pages/DentistaAtendimentos/DentistaAtendimentos";
+import NovoPaciente from "./pages/NovoPaciente/NovoPaciente";
+import AdminAgenda from "./pages/AdminAgenda/AdminAgenda";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path="/login" element={<LoginPlataforma />} />
 
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/agenda" element={<AdminAgenda />} />
+        <Route path="/admin/novo-paciente" element={<NovoPaciente />} />
         <Route path="/dentista" element={<Dentista />} />
         <Route path="/dentista/atendimentos" element={<DentistaAtendimentos />} />
         <Route path="/dentista/historico" element={<DentistaHistorico />} />
