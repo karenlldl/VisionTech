@@ -10,6 +10,8 @@ import DentistaHistorico from "./pages/DentistaHistorico/DentistaHistorico";
 import DentistaAtendimentos from "./pages/DentistaAtendimentos/DentistaAtendimentos";
 import NovoPaciente from "./pages/NovoPaciente/NovoPaciente";
 import AdminAgenda from "./pages/AdminAgenda/AdminAgenda";
+import AdminDashboards from "./pages/AdminDashboards/AdminDashboards";
+import DentistaAgenda from "./pages/DentistaAgenda/DentistaAgenda";
 
 
 function App() {
@@ -24,7 +26,9 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/agenda" element={<AdminAgenda />} />
         <Route path="/admin/novo-paciente" element={<NovoPaciente />} />
+        <Route path="/admin/dashboards" element={<AdminDashboards />} />
         <Route path="/dentista" element={<Dentista />} />
+        <Route path="/dentista/agenda" element={<DentistaAgenda />} />
         <Route path="/dentista/atendimentos" element={<DentistaAtendimentos />} />
         <Route path="/dentista/historico" element={<DentistaHistorico />} />
 

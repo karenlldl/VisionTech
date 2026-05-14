@@ -41,10 +41,17 @@ const adminLinks = [
 
 const dentistaLinks = [
   {
-    label: "Agenda",
+    label: "Fila de atendimento",
     path: "/dentista",
     icon: CalendarDays,
   },
+
+  {
+    label: "Agenda",
+    path: "/dentista/agenda",
+    icon: CalendarDays,
+  },
+
   {
     label: "Atendimentos",
     path: "/dentista/atendimentos",

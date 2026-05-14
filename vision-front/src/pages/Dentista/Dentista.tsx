@@ -50,13 +50,8 @@ const Dentista = () => {
       <main className="mx-auto max-w-7xl px-6 py-8">
         <div>
           <h1 className="text-4xl font-bold text-[#2f251f]">
-            Minha agenda
+            Fila de atendimento
           </h1>
-
-          <p className="mt-1 text-[#7c6f67]">
-            Pacientes agendados e em
-            atendimento.
-          </p>
         </div>
 
         <section className="mt-8 flex flex-col gap-4">
