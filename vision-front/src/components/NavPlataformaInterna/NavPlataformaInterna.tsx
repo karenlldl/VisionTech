@@ -1,6 +1,5 @@
 import {
   LayoutGrid,
-  List,
   CalendarDays,
   BarChart3,
   UserPlus,

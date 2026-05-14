@@ -1,10 +1,5 @@
 import { useState } from "react";
 
-import {
-  X,
-  Stethoscope,
-} from "lucide-react";
-
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
 
 import PacienteCard from "../../components/Agenda/PacienteCard";
@@ -110,11 +105,15 @@ const Dentista = () => {
         </label>
 
         <textarea
-          id="descricaoAtendimento"
-          placeholder="Descreva o procedimento realizado, observações clínicas, próximos passos..."
-          rows={5}
-          className="w-full resize-none rounded-xl border border-[#f58200] bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#f58200]/20"
-        />
+  id="descricaoAtendimento"
+  value={descricaoAtendimento}
+  onChange={(event) =>
+    setDescricaoAtendimento(event.target.value)
+  }
+  placeholder="Descreva o procedimento realizado, observações clínicas, próximos passos..."
+  rows={5}
+  className="w-full resize-none rounded-xl border border-[#f58200] bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-[#f58200]/20"
+/>
       </div>
 
       {/* ANDAMENTO */}
