@@ -3,9 +3,6 @@ import {
   Search,
   MessageSquare,
   X,
-  Clock3,
-  Check,
-  UserRoundPlus,
 } from "lucide-react";
 
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
