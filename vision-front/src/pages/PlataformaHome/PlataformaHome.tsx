@@ -45,7 +45,7 @@ const PlataformaHome = () => {
           </h1>
 
           <p className="mt-6 max-w-[540px] text-xl leading-relaxed text-[#7b716d]">
-            O Vision organiza e melhora o acesso ao tratamento odontológico para
+            A Vision organiza e melhora o acesso ao tratamento odontológico para
             pessoas em situação de vulnerabilidade. Juntos, podemos fazer a
             diferença.
           </p>
