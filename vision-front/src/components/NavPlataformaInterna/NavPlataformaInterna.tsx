@@ -6,6 +6,7 @@ import {
   ClipboardList,
   History,
   LogOut,
+  UserRoundPlus,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -35,6 +36,11 @@ const adminLinks = [
     label: "Novo paciente",
     path: "/admin/novo-paciente",
     icon: UserPlus,
+  },
+  {
+    label: "Equipe",
+    path: "/admin/equipe",
+    icon: UserRoundPlus,
   },
 ];
 
