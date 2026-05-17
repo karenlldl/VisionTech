@@ -144,7 +144,7 @@ const handleEnviarFormulario = async (
       <NavPlataformaHome />
 
       <main className="flex min-h-[calc(100vh-68px)] items-start justify-center px-5 py-8 md:py-10">
-        <section className="w-full max-w-[520px] rounded-xl border border-[#ded7d1] bg-white px-6 py-6 shadow-sm md:px-7">
+        <section className="w-full max-w-130 rounded-xl border border-[#ded7d1] bg-white px-6 py-6 shadow-sm md:px-7">
           <div className="mb-7">
             <h1 className="text-2xl font-extrabold tracking-tight text-[#2f251f]">
               Cadastro para avaliação

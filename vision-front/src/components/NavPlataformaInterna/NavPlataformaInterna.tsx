@@ -81,7 +81,7 @@ const NavPlataformaInterna = ({ tipoUsuario }: NavPlataformaInternaProps) => {
     : "Perfil: Dentista voluntário";
 
   return (
-    <header className="flex h-[68px] items-center justify-between border-b border-[#e4ded9] bg-white px-6">
+    <header className="flex h-17 items-center justify-between border-b border-[#e4ded9] bg-white px-6">
       {/* Logo */}
       <Link
         to="/"

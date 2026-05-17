@@ -38,7 +38,7 @@ const DentistaAtendimentos = () => {
     <div className="min-h-screen bg-[#fdfdfc] text-[#2f251f]">
       <NavPlataformaInterna tipoUsuario="dentista" />
 
-      <main className="mx-auto w-full max-w-[1050px] px-6 py-8">
+      <main className="mx-auto w-full max-w-262.5 px-6 py-8">
         <div className="mb-7 flex items-center gap-3">
           <Stethoscope className="h-6 w-6 text-[#f58200]" />
 

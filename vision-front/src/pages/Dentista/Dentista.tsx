@@ -73,7 +73,7 @@ const Dentista = () => {
       {/* MODAL */}
 {modalAberto && pacienteSelecionado && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-5">
-    <section className="w-full max-w-[520px] rounded-xl bg-white p-6 shadow-xl">
+    <section className="w-full max-w-130 rounded-xl bg-white p-6 shadow-xl">
       <div className="mb-5 flex items-start justify-between">
         <div>
           <h2 className="text-2xl font-extrabold text-[#2f251f]">
