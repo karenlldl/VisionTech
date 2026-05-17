@@ -7,6 +7,7 @@ import {
 
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
 
+
 const Admin = () => {
   const [pacientes, setPacientes] = useState<any[]>([]);
   useEffect(() => {

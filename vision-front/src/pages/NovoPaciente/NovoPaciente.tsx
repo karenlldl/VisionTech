@@ -23,7 +23,7 @@ const NovoPaciente = () => {
 
           <p className="mt-2 text-[#7b6f69]">
             Cadastre um novo paciente para triagem e
-            acompanhamento odontológico.
+            acompanhamento odontológico
           </p>
         </div>
 
@@ -61,7 +61,7 @@ const NovoPaciente = () => {
 
                   <p className="mt-1 text-sm text-[#7b6f69]">
                     Mulheres vítimas de violência com a
-                    dentição afetada.
+                    dentição afetada
                   </p>
                 </button>
 
