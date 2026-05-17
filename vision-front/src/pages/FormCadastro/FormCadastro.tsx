@@ -88,7 +88,8 @@ const FormCadastro = () => {
     setErroImagens("");
   };
 
-  const handleEnviarFormulario = (
+  
+const handleEnviarFormulario = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
@@ -106,7 +107,36 @@ const FormCadastro = () => {
       return;
     }
 
-    navigate("/cadastro-enviado");
+    try {
+      const inputNome = (document.getElementById("nome") as HTMLInputElement).value;
+      const inputContato = (document.getElementById("contato") as HTMLInputElement).value;
+      const inputRenda = (document.getElementById("renda") as HTMLInputElement).value;
+
+      const dadosPaciente = {
+        nome: inputNome,
+        idade: idadeNumerica,
+        telefone: inputContato,
+        rendaBrutaTotal: Number(inputRenda),
+        programa: programaSelecionado
+      };
+
+      const response = await fetch("http://localhost:8081/pacientes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosPaciente),
+      });
+
+      if (!response.ok) {
+        const txtErro = await response.text();
+        throw new Error(txtErro || "Erro ao salvar no servidor.");
+      }
+
+      navigate("/cadastro-enviado");
+    } catch (error: any) {
+      alert("Falha na integração: " + error.message);
+    }
   };
 
   return (
