@@ -10,22 +10,23 @@ import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlata
 
 const Admin = () => {
   const [pacientes, setPacientes] = useState<any[]>([]);
+  const [listaDentistas, setListaDentistas] = useState<any[]>([]);
   useEffect(() => {
-    const buscarPacientes = async () => {
+    const buscarDados = async () => {
       try {
-        const response = await fetch("http://localhost:8081/pacientes");
-        if (!response.ok) throw new Error("Erro ao buscar pacientes na API");
-        
-        const dados = await response.json();
-        setPacientes(dados);
+        const resPacientes = await fetch("http://localhost:8081/pacientes");
+        if (resPacientes.ok) setPacientes(await resPacientes.json());
+
+
+        const resDentistas = await fetch("http://localhost:8081/dentistas");
+        if (resDentistas.ok) setListaDentistas(await resDentistas.json());
       } catch (error) {
         console.error("Erro na integração com o Quarkus:", error);
       }
     };
 
-    buscarPacientes();
+    buscarDados();
   }, []);
-
   const [busca, setBusca] = useState("");
   const [filtroOrigem, setFiltroOrigem] = useState("Todas");
   const [filtroPrioridade, setFiltroPrioridade] = useState("Todas");
@@ -419,14 +420,17 @@ const Admin = () => {
               <label className="text-sm font-semibold text-[#2f251f]">
                 Dentista
               </label>
-              <select
+<select
                 value={dentistaSelecionado}
                 onChange={(e) => setDentistaSelecionado(e.target.value)}
                 className="mt-2 h-12 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none"
               >
                 <option value="">Selecione</option>
-                <option>Dra. Camila Santos</option>
-                <option>Dr. Rafael Lima</option>
+                {listaDentistas.map((d) => (
+                  <option key={d.id} value={d.nome}>
+                    {d.nome}
+                  </option>
+                ))}
               </select>
             </div>
 
