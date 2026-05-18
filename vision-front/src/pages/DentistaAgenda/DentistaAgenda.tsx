@@ -1,38 +1,128 @@
+import { useEffect, useState } from "react";
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
 import AgendaSemanal from "../../components/Agenda/AgendaSemanal";
 
-const eventosDentista = [
-  {
-    id: 1,
-    paciente: "Maria Silva",
-    dentista: "Dra. Camila Santos",
-    dia: "SEG",
-    horario: "09:00",
-    status: "Aguardando",
-    prioridade: "Baixa",
-  },
-  {
-    id: 2,
-    paciente: "Lucas Oliveira",
-    dentista: "Dra. Camila Santos",
-    dia: "QUA",
-    horario: "14:00",
-    status: "Em atendimento",
-    prioridade: "Média",
-  },
-] as const;
+interface EventoJava {
+  idAtendimento: number;
+  dataHora: string;     
+  procedimento: string;
+  status: string;
+  nomePaciente: string;
+  gravidade: number;
+  nomeDentista: string; // <--- Adicionado aqui
+}
+
+interface EventoFront {
+  id: number;
+  paciente: string;
+  dentista: string;
+  dia: string;
+  horario: string;
+  status: string;
+  prioridade: string;
+}
 
 const DentistaAgenda = () => {
+  const [eventos, setEventos] = useState<EventoFront[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState("");
+  const [nomeLogado, setNomeLogado] = useState(""); // <--- Estado para o cabeçalho
+
+  const idMedicoLogado = 24; 
+  
+  const extrairDiaSemana = (dataStr: string): string => {
+    try {
+      const [dataParte] = dataStr.split(" ");
+      const [dia, mes, ano] = dataParte.split("/").map(Number);
+      const dataObjeto = new Date(ano, mes - 1, dia);
+      
+      const dias = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+      return dias[dataObjeto.getDay()];
+    } catch {
+      return "SEG"; 
+    }
+  };
+
+  const traduzirPrioridade = (gravidade: number): string => {
+    if (gravidade >= 4) return "Alta";
+    if (gravidade === 3) return "Média";
+    return "Baixa";
+  };
+
+  const traduzirStatus = (status: string): string => {
+    const s = status.toUpperCase();
+    if (s === "AGENDADO") return "Aguardando";
+    if (s === "EM_ATENDIMENTO") return "Em atendimento";
+    if (s === "FINALIZADO") return "Concluído";
+    return "Aguardando";
+  };
+
+  useEffect(() => {
+    const carregarAgendaBanco = async () => {
+      try {
+        const response = await fetch(`http://localhost:8081/dentistas/${idMedicoLogado}/agenda`);
+        
+        if (!response.ok) {
+          throw new Error("Não foi possível sincronizar com o banco de dados.");
+        }
+
+        const dadosJava: EventoJava[] = await response.json();
+
+        // Pega o nome do médico logado na primeira resposta do Oracle
+        if (dadosJava.length > 0 && dadosJava[0].nomeDentista) {
+          setNomeLogado(dadosJava[0].nomeDentista);
+        }
+
+        const dadosFormatados: EventoFront[] = dadosJava.map((item) => {
+          const [_, horario] = item.dataHora.split(" "); 
+
+          return {
+            id: item.idAtendimento,
+            paciente: item.nomePaciente,
+            dentista: item.nomeDentista || "Você", // <--- Nome dinâmico na célula da tabela
+            dia: extrairDiaSemana(item.dataHora),
+            horario: horario,
+            status: traduzirStatus(item.status),
+            prioridade: traduzirPrioridade(item.gravidade),
+          };
+        });
+
+        setEventos(dadosFormatados);
+      } catch (err: any) {
+        setErro(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    carregarAgendaBanco();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#fdfdfc]">
-      <NavPlataformaInterna tipoUsuario="dentista" />
+      {/* Nome dinâmico injetado com sucesso */}
+      <NavPlataformaInterna tipoUsuario="dentista" nomeUsuario={nomeLogado} />
 
       <main className="mx-auto max-w-7xl px-6 py-8">
-        <AgendaSemanal
-          titulo="Minha agenda"
-          modo="dentista"
-          eventos={[...eventosDentista]}
-        />
+        {loading && (
+          <p className="text-center text-sm font-semibold text-[#6f625d] py-12">
+            Buscando dados no Oracle...
+          </p>
+        )}
+        
+        {erro && (
+          <p className="text-center text-sm font-semibold text-red-500 rounded-xl border border-red-200 bg-red-50 p-4">
+            {erro}
+          </p>
+        )}
+
+        {!loading && !erro && (
+          <AgendaSemanal
+            titulo="Minha agenda"
+            modo="dentista"
+            eventos={eventos as any} 
+          />
+        )}
       </main>
     </div>
   );

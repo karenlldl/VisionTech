@@ -14,6 +14,7 @@ type TipoUsuario = "admin" | "dentista";
 
 type NavPlataformaInternaProps = {
   tipoUsuario: TipoUsuario;
+  nomeUsuario?: string;
 };
 
 const adminLinks = [
@@ -50,13 +51,11 @@ const dentistaLinks = [
     path: "/dentista",
     icon: CalendarDays,
   },
-
   {
     label: "Agenda",
     path: "/dentista/agenda",
     icon: CalendarDays,
   },
-
   {
     label: "Atendimentos",
     path: "/dentista/atendimentos",
@@ -69,13 +68,15 @@ const dentistaLinks = [
   },
 ];
 
-const NavPlataformaInterna = ({ tipoUsuario }: NavPlataformaInternaProps) => {
+const NavPlataformaInterna = ({ tipoUsuario, nomeUsuario }: NavPlataformaInternaProps) => {
   const location = useLocation();
 
   const isAdmin = tipoUsuario === "admin";
   const links = isAdmin ? adminLinks : dentistaLinks;
 
-  const nomeUsuario = isAdmin ? "Administrador" : "Dra. Camila Santos";
+  // CORREÇÃO CRÍTICA: Se a prop nomeUsuario vier preenchida, usamos ela. Caso contrário, aplica o padrão.
+  const nomeExibido = nomeUsuario || (isAdmin ? "Administrador" : "Dentista Voluntário");
+  
   const perfilUsuario = isAdmin
     ? "Perfil: Administrador"
     : "Perfil: Dentista voluntário";
@@ -92,7 +93,7 @@ const NavPlataformaInterna = ({ tipoUsuario }: NavPlataformaInternaProps) => {
           src="/img/logo-laranja.png"
           alt="Vision"
           className="h-8 w-auto object-contain"
-        />
+        ></img>
       </Link>
 
       {/* Links */}
@@ -125,7 +126,7 @@ const NavPlataformaInterna = ({ tipoUsuario }: NavPlataformaInternaProps) => {
       {/* Perfil + sair */}
       <div className="flex items-center gap-5">
         <div className="hidden text-right md:block">
-          <p className="text-sm font-semibold text-black">{nomeUsuario}</p>
+          <p className="text-sm font-semibold text-black">{nomeExibido}</p>
           <p className="text-xs text-[#6f625d]">{perfilUsuario}</p>
         </div>
 

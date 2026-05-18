@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { Stethoscope, CalendarDays, Globe, Building2 } from "lucide-react";
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
 
@@ -18,25 +17,62 @@ type Atendimento = {
 };
 
 const DentistaAtendimentos = () => {
-  const location = useLocation();
-
-  const atendimentoRecebido = location.state?.atendimento as
-    | Atendimento
-    | undefined;
-
   const [atendimentos, setAtendimentos] = useState<Atendimento[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState("");
+  const [nomeLogado, setNomeLogado] = useState(""); // <--- Estado para o cabeçalho
+
+  const idMedicoLogado = 24; 
+
+  const traduzirPrioridade = (gravidade: number): string => {
+    if (gravidade >= 4) return "Alta";
+    if (gravidade === 3) return "Média";
+    return "Baixa";
+  };
 
   useEffect(() => {
-    const dados = JSON.parse(
-      localStorage.getItem("atendimentosEmAndamento") || "[]"
-    );
+    const buscarFilaReal = async () => {
+      try {
+        const response = await fetch(`http://localhost:8081/dentistas/${idMedicoLogado}/agenda`);
+        if (!response.ok) throw new Error("Não foi possível carregar os atendimentos ativos.");
+        
+        const dadosJava = await response.json();
 
-    setAtendimentos(dados);
-  }, [atendimentoRecebido]);
+        // Pega o nome do médico para o topo direito
+        if (dadosJava.length > 0 && dadosJava[0].nomeDentista) {
+          setNomeLogado(dadosJava[0].nomeDentista);
+        }
+
+        const formatados: Atendimento[] = dadosJava
+          .filter((item: any) => item.status === "EM_ATENDIMENTO")
+          .map((item: any) => ({
+            id: String(item.idAtendimento),
+            nome: item.nomePaciente,
+            idade: 12,
+            origem: "Triagem Escola",
+            origemIcone: "building",
+            status: "Em atendimento",
+            prioridade: traduzirPrioridade(item.gravidade),
+            dataAgenda: item.dataHora,
+            descricaoAtendimento: item.procedimento,
+            andamento: "Em andamento",
+            dataRegistro: item.dataHora.split(" ")[0]
+          }));
+
+        setAtendimentos(formatados);
+      } catch (err: any) {
+        setErro(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    buscarFilaReal();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#fdfdfc] text-[#2f251f]">
-      <NavPlataformaInterna tipoUsuario="dentista" />
+      <NavPlataformaInterna tipoUsuario="dentista" nomeUsuario={nomeLogado} />
 
       <main className="mx-auto w-full max-w-262.5 px-6 py-8">
         <div className="mb-7 flex items-center gap-3">
@@ -48,12 +84,20 @@ const DentistaAtendimentos = () => {
             </h1>
 
             <p className="text-sm text-[#6f625d]">
-              Pacientes com tratamento em andamento.
+              Pacientes com treatmento em andamento.
             </p>
           </div>
         </div>
 
-        {atendimentos.length === 0 ? (
+        {loading && (
+          <p className="text-sm text-[#6f625d] py-4">Buscando fila ativa no Oracle...</p>
+        )}
+
+        {erro && (
+          <p className="text-sm text-red-500 py-4">Erro: {erro}</p>
+        )}
+
+        {!loading && !erro && atendimentos.length === 0 ? (
           <p className="rounded-xl border border-[#ded7d1] bg-white p-5 text-sm text-[#6f625d]">
             Nenhum atendimento em andamento.
           </p>
@@ -110,7 +154,7 @@ const DentistaAtendimentos = () => {
 
                 <div className="mt-4 rounded-lg bg-[#f7f4f1] p-4">
                   <p className="text-sm font-bold text-[#2f251f]">
-                    Registro do atendimento
+                    Procedimento Solicitado
                   </p>
 
                   <p className="mt-2 text-sm leading-relaxed text-[#6f625d]">
