@@ -116,7 +116,6 @@ const Dentista = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfdfc]">
-      {/* VINCO DINÂMICO: Repassando o estado com o nome do Oracle para a Navbar */}
       <NavPlataformaInterna tipoUsuario="dentista" nomeUsuario={nomeLogado} />
 
       <main className="mx-auto max-w-7xl px-6 py-8">
