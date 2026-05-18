@@ -20,7 +20,7 @@ const DentistaHistorico = () => {
   const [historico, setHistorico] = useState<AtendimentoHistorico[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
-  const [nomeLogado, setNomeLogado] = useState(""); // <--- Estado para o cabeçalho
+  const [nomeLogado, setNomeLogado] = useState(""); 
 
   const idMedicoLogado = 24;
 
@@ -38,7 +38,6 @@ const DentistaHistorico = () => {
         
         const dadosJava = await response.json();
 
-        // Pega o nome do médico para o topo direito
         if (dadosJava.length > 0 && dadosJava[0].nomeDentista) {
           setNomeLogado(dadosJava[0].nomeDentista);
         }

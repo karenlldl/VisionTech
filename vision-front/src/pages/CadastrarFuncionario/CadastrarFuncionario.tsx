@@ -6,7 +6,6 @@ import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlata
 const CadastrarFuncionario = () => {
   const navigate = useNavigate();
 
-  // Estados para capturar os dados do input
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cargo, setCargo] = useState("");
@@ -19,7 +18,7 @@ const CadastrarFuncionario = () => {
       nome: nome,
       sobrenome: sobrenome,
       cargo: cargo,
-      tipoAcesso: "Administrador", // Fixo, conforme o readOnly do front
+      tipoAcesso: "Administrador", 
       email: email,
     };
 
@@ -37,7 +36,6 @@ const CadastrarFuncionario = () => {
         throw new Error(txtErro || "Falha ao salvar no banco de dados.");
       }
 
-      // Se o Java aceitou e gravou, avança de tela
       navigate("/admin/equipe/convite-enviado");
     } catch (error: any) {
       console.error(error);

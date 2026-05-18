@@ -9,7 +9,7 @@ interface EventoJava {
   status: string;
   nomePaciente: string;
   gravidade: number;
-  nomeDentista: string; // <--- Adicionado aqui
+  nomeDentista: string;
 }
 
 interface EventoFront {
@@ -26,7 +26,7 @@ const DentistaAgenda = () => {
   const [eventos, setEventos] = useState<EventoFront[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState("");
-  const [nomeLogado, setNomeLogado] = useState(""); // <--- Estado para o cabeçalho
+  const [nomeLogado, setNomeLogado] = useState("");
 
   const idMedicoLogado = 24; 
   
@@ -68,7 +68,6 @@ const DentistaAgenda = () => {
 
         const dadosJava: EventoJava[] = await response.json();
 
-        // Pega o nome do médico logado na primeira resposta do Oracle
         if (dadosJava.length > 0 && dadosJava[0].nomeDentista) {
           setNomeLogado(dadosJava[0].nomeDentista);
         }
@@ -79,7 +78,7 @@ const DentistaAgenda = () => {
           return {
             id: item.idAtendimento,
             paciente: item.nomePaciente,
-            dentista: item.nomeDentista || "Você", // <--- Nome dinâmico na célula da tabela
+            dentista: item.nomeDentista || "Você", 
             dia: extrairDiaSemana(item.dataHora),
             horario: horario,
             status: traduzirStatus(item.status),
@@ -100,7 +99,6 @@ const DentistaAgenda = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfdfc]">
-      {/* Nome dinâmico injetado com sucesso */}
       <NavPlataformaInterna tipoUsuario="dentista" nomeUsuario={nomeLogado} />
 
       <main className="mx-auto max-w-7xl px-6 py-8">

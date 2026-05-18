@@ -37,7 +37,6 @@ const LoginPlataforma = () => {
 
       const data = await response.json();
       
-      // PERSISTÊNCIA REATIVA: Salva o tipo e o ID real retornado pelo seu Java
       localStorage.setItem("tipoAcesso", data.tipoAcesso);
       localStorage.setItem("idUsuarioLogado", String(data.id || data.idFuncionario || "11"));
 

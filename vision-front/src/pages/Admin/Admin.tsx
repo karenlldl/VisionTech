@@ -38,7 +38,6 @@ const Admin = () => {
     try {
       setLoading(true);
 
-      // EXTRACT DINÂMICO DO LOGIN
       const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
       try {
         const resAdmin = await fetch(`http://localhost:8081/funcionarios/${idLogado}`);
