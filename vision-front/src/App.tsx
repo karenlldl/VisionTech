@@ -17,6 +17,7 @@ import CadastrarDentista from "./pages/CadastrarDentista/CadastrarDentista";
 import CadastrarFuncionario from "./pages/CadastrarFuncionario/CadastrarFuncionario";
 import ConviteEnviado from "./pages/ConviteEnviado/ConviteEnviado";
 import DefinirSenha from "./pages/DefinirSenha/DefinirSenha";
+import NotFound from "./pages/NotFound/NotFound";
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
         <Route path="/admin/equipe/convite-enviado" element={<ConviteEnviado />} />
 
          <Route path="/definir-senha" element={<DefinirSenha />} />
+
+         <Route path="*" element={<NotFound />} />
 
       </Routes>
     </BrowserRouter>
