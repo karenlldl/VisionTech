@@ -21,22 +21,10 @@ export default function DefinirSenha() {
     }
 
     setToken(tokenUrl);
-
-    // Simulação temporária até conectar com o backend
     setTokenValido(true);
-
-    // Quando tiver backend, você troca por algo assim:
-    /*
-    fetch(`http://localhost:8080/auth/validate-token?token=${tokenUrl}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Token inválido");
-        setTokenValido(true);
-      })
-      .catch(() => setTokenValido(false));
-    */
   }, []);
 
-  function handleSubmit(event: React.FormEvent) {
+async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setMensagem("");
 
@@ -57,44 +45,33 @@ export default function DefinirSenha() {
 
     setCarregando(true);
 
-    // Simulação temporária
-    setTimeout(() => {
-      setCarregando(false);
-      setMensagem("Senha definida com sucesso!");
+    try {
+      const response = await fetch("http://localhost:8081/auth/create-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token: token,
+          password: senha,
+        }),
+      });
 
+      if (!response.ok) {
+        const erro = await response.text();
+        throw new Error(erro || "Erro ao definir senha");
+      }
+
+      setMensagem("Senha definida com sucesso!");
       setTimeout(() => {
         window.location.href = "/login";
       }, 1500);
-    }, 1000);
 
-    // Quando tiver backend, você troca por:
-    /*
-    fetch("http://localhost:8080/auth/create-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token,
-        password: senha,
-        confirmPassword: confirmarSenha,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Erro ao definir senha");
-        setMensagem("Senha definida com sucesso!");
-
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 1500);
-      })
-      .catch(() => {
-        setMensagem("Não foi possível definir a senha. Tente novamente.");
-      })
-      .finally(() => {
-        setCarregando(false);
-      });
-    */
+    } catch (error: any) {
+      setMensagem(error.message);
+    } finally {
+      setCarregando(false);
+    }
   }
 
   if (tokenValido === null) {

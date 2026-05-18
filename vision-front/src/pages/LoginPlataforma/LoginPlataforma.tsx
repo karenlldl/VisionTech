@@ -9,8 +9,9 @@ const LoginPlataforma = () => {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setErro("");
 
     const emailNormalizado = email.trim().toLowerCase();
 
@@ -19,19 +20,26 @@ const LoginPlataforma = () => {
       return;
     }
 
-    if (emailNormalizado === "admin@vision.com") {
-      setErro("");
+    try {
+      const response = await fetch("http://localhost:8081/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: emailNormalizado,
+          senha: senha
+        }),
+      });
+
+      if (!response.ok) {
+        const msgErro = await response.text();
+        throw new Error(msgErro || "Falha no login");
+      }
+
       navigate("/admin");
-      return;
-    }
 
-    if (emailNormalizado === "dentista@vision.com") {
-      setErro("");
-      navigate("/dentista");
-      return;
+    } catch (error: any) {
+      setErro(error.message);
     }
-
-    setErro("E-mail ou senha inválidos.");
   };
 
   return (
