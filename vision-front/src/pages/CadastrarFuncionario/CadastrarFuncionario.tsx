@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowLeft, Send, UserRoundPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
@@ -5,9 +6,43 @@ import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlata
 const CadastrarFuncionario = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  // Estados para capturar os dados do input
+  const [nome, setNome] = useState("");
+  const [sobrenome, setSobrenome] = useState("");
+  const [cargo, setCargo] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate("/admin/equipe/convite-enviado");
+
+    const dadosFuncionario = {
+      nome: nome,
+      sobrenome: sobrenome,
+      cargo: cargo,
+      tipoAcesso: "Administrador", // Fixo, conforme o readOnly do front
+      email: email,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8081/funcionarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosFuncionario),
+      });
+
+      if (!response.ok) {
+        const txtErro = await response.text();
+        throw new Error(txtErro || "Falha ao salvar no banco de dados.");
+      }
+
+      // Se o Java aceitou e gravou, avança de tela
+      navigate("/admin/equipe/convite-enviado");
+    } catch (error: any) {
+      console.error(error);
+      alert("Erro na integração com o servidor: " + error.message);
+    }
   };
 
   return (
@@ -47,6 +82,8 @@ const CadastrarFuncionario = () => {
                 </label>
                 <input
                   required
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -57,6 +94,8 @@ const CadastrarFuncionario = () => {
                 </label>
                 <input
                   required
+                  value={sobrenome}
+                  onChange={(e) => setSobrenome(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -70,6 +109,8 @@ const CadastrarFuncionario = () => {
                 <input
                   required
                   placeholder="Ex: Coordenador"
+                  value={cargo}
+                  onChange={(e) => setCargo(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -78,7 +119,6 @@ const CadastrarFuncionario = () => {
                 <label className="mb-2 block text-sm font-semibold text-[#2f251f]">
                   Tipo de acesso
                 </label>
-
                 <input
                   value="Administrador"
                   readOnly
@@ -95,6 +135,8 @@ const CadastrarFuncionario = () => {
                 required
                 type="email"
                 placeholder="funcionario@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
               />
             </div>

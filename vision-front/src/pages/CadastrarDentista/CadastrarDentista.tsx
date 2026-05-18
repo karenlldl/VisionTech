@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowLeft, Send, Stethoscope } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
@@ -5,9 +6,44 @@ import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlata
 const CadastrarDentista = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  // Estados para capturar o que o usuário digita
+  const [nome, setNome] = useState("");
+  const [sobrenome, setSobrenome] = useState("");
+  const [cro, setCro] = useState("");
+  const [especialidade, setEspecialidade] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate("/admin/equipe/convite-enviado");
+
+    const dadosDentista = {
+      nome: nome,
+      sobrenome: sobrenome,
+      cro: cro,
+      especialidade: especialidade,
+      email: email,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8081/dentistas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosDentista),
+      });
+
+      if (!response.ok) {
+        const txtErro = await response.text();
+        throw new Error(txtErro || "Falha ao salvar no banco de dados.");
+      }
+
+      // Se o Java retornou 201 Created, avança de tela
+      navigate("/admin/equipe/convite-enviado");
+    } catch (error: any) {
+      console.error(error);
+      alert("Erro na integração com o servidor: " + error.message);
+    }
   };
 
   return (
@@ -47,6 +83,8 @@ const CadastrarDentista = () => {
                 </label>
                 <input
                   required
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -57,6 +95,8 @@ const CadastrarDentista = () => {
                 </label>
                 <input
                   required
+                  value={sobrenome}
+                  onChange={(e) => setSobrenome(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -70,6 +110,8 @@ const CadastrarDentista = () => {
                 <input
                   required
                   placeholder="Ex: CRO-SP 123456"
+                  value={cro}
+                  onChange={(e) => setCro(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -81,6 +123,8 @@ const CadastrarDentista = () => {
                 <input
                   required
                   placeholder="Ex: Odontopediatria"
+                  value={especialidade}
+                  onChange={(e) => setEspecialidade(e.target.value)}
                   className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
                 />
               </div>
@@ -94,6 +138,8 @@ const CadastrarDentista = () => {
                 required
                 type="email"
                 placeholder="dentista@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="h-11 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none focus:border-[#f58200]"
               />
             </div>
