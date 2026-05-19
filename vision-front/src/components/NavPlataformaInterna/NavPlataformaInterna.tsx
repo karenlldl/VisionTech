@@ -74,7 +74,6 @@ const NavPlataformaInterna = ({ tipoUsuario, nomeUsuario }: NavPlataformaInterna
   const isAdmin = tipoUsuario === "admin";
   const links = isAdmin ? adminLinks : dentistaLinks;
 
-  // CORREÇÃO CRÍTICA: Se a prop nomeUsuario vier preenchida, usamos ela. Caso contrário, aplica o padrão.
   const nomeExibido = nomeUsuario || (isAdmin ? "Administrador" : "Dentista Voluntário");
   
   const perfilUsuario = isAdmin
@@ -96,7 +95,6 @@ const NavPlataformaInterna = ({ tipoUsuario, nomeUsuario }: NavPlataformaInterna
         ></img>
       </Link>
 
-      {/* Links */}
       <nav className="hidden items-center gap-2 md:flex">
         {links.map((item) => {
           const Icon = item.icon;
@@ -123,7 +121,6 @@ const NavPlataformaInterna = ({ tipoUsuario, nomeUsuario }: NavPlataformaInterna
         })}
       </nav>
 
-      {/* Perfil + sair */}
       <div className="flex items-center gap-5">
         <div className="hidden text-right md:block">
           <p className="text-sm font-semibold text-black">{nomeExibido}</p>

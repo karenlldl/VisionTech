@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
-import { Search, MessageSquare, X } from "lucide-react";
+import { Search, MessageSquare, X, CalendarDays, Clock } from "lucide-react";
 import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
 
 const Admin = () => {
@@ -13,10 +13,16 @@ const Admin = () => {
   const [filtroPrioridade, setFiltroPrioridade] = useState("Todas");
   const [filtroStatus, setFiltroStatus] = useState("Todos");
   const [filtroProjeto, setFiltroProjeto] = useState("Todos");
+  
   const [pacienteSelecionado, setPacienteSelecionado] = useState<any>(null);
 
   const [modalAgenda, setModalAgenda] = useState<any>(null);
   const [dentistaSelecionado, setDentistaSelecionado] = useState("");
+  const [dataSelecionada, setDataSelecionada] = useState("");
+  const [horarioSelecionado, setHorarioSelecionado] = useState("");
+  const [processando, setProcessando] = useState(false);
+
+  const horariosDisponiveis = ["08:00", "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
 
   const traduzirPrioridade = (gravidade: number): string => {
     if (gravidade >= 4) return "Alta";
@@ -38,7 +44,6 @@ const Admin = () => {
     try {
       setLoading(true);
 
-      // EXTRACT DINÂMICO DO LOGIN
       const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
       try {
         const resAdmin = await fetch(`http://localhost:8081/funcionarios/${idLogado}`);
@@ -61,19 +66,17 @@ const Admin = () => {
           const nomeDentistaStr = item.dentista || item.nmDentista || null;
           const statusStr = item.status || item.stStatusAtendimento || null;
 
-          return {
+return {
             id: item.id || item.idPaciente,
             idAtendimento: item.idAtendimento,
             nome: item.nome || item.nmPaciente || "Paciente Sem Nome",
-            idade: 14, 
-            origem: "Triagem Escola",
-            projeto: "Dentistas do Bem",
+            idade: item.idade || 0, 
+            origem: item.escola || "Não informada",
+            projeto: item.programa || "Não informado",
             prioridade: traduzirPrioridade(item.gravidade),
             status: traduzirStatus(statusStr, nomeDentistaStr),
             dentista: nomeDentistaStr,
-            observacao: item.observacao || item.dsDescricaoProcedimento || "Nenhuma observation registrada.",
-            dataConsulta: "22/05/2026",
-            horarioConsulta: "11:00"
+            observacao: item.observacao || item.dsDescricaoProcedimento || "Nenhuma observação registrada.",
           };
         });
       }
@@ -116,20 +119,48 @@ const Admin = () => {
     setPacientes((prev) => prev.map((paciente) => (paciente.id === id ? { ...paciente, prioridade } : paciente)));
   };
 
+  const fecharModalAgenda = () => {
+    setModalAgenda(null);
+    setDentistaSelecionado("");
+    setDataSelecionada("");
+    setHorarioSelecionado("");
+  };
+
   const confirmarAgendamento = async () => {
     if (!modalAgenda || !dentistaSelecionado) {
       alert("Por favor, selecione um dentista voluntário.");
       return;
     }
+    if (!dataSelecionada || !horarioSelecionado) {
+      alert("Por favor, selecione a data e o horário da consulta.");
+      return;
+    }
+
+    setProcessando(true);
     try {
-      const response = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/atribuir-medico/${dentistaSelecionado}`, { method: "PUT" });
-      if (!response.ok) throw new Error("Erro ao atualizar o vínculo no banco.");
-      alert("Dentista atribuído com sucesso!");
-      setModalAgenda(null);
-      setDentistaSelecionado("");
+      // 1. Bate no Java para atribuir o médico
+      const resAtribuir = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/atribuir-medico/${dentistaSelecionado}`, { 
+        method: "PUT" 
+      });
+      if (!resAtribuir.ok) throw new Error("Erro ao atualizar o vínculo no banco.");
+
+      // 2. Bate no Java para marcar a data e hora
+      const dataHoraFormatada = `${dataSelecionada} ${horarioSelecionado}`;
+      const resAgendar = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/marcar-consulta`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dataHora: dataHoraFormatada })
+      });
+      
+      if (!resAgendar.ok) throw new Error("Vínculo criado, mas erro ao gravar o horário no banco.");
+
+      alert("Dentista atribuído e consulta agendada com sucesso!");
+      fecharModalAgenda();
       buscarDados(); 
     } catch (err: any) {
-      alert("Erro ao salvar atribuição: " + err.message);
+      alert(err.message);
+    } finally {
+      setProcessando(false);
     }
   };
 
@@ -190,7 +221,7 @@ const Admin = () => {
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <select value={paciente.prioridade} onChange={(e) => alterarPrioridade(paciente.id, e.target.value)} className="h-11 rounded-xl border border-[#ddd3cb] bg-white px-4 outline-none"><option>Baixa</option><option>Média</option><option>Alta</option></select>
-                <button onClick={() => setModalAgenda(paciente)} className="h-11 rounded-xl border border-[#ddd3cb] bg-white px-5 font-medium transition hover:bg-[#f6f1ec]">{paciente.dentista ? "Mudar Vínculo" : "Atribuir Dentista"}</button>
+                <button onClick={() => setModalAgenda(paciente)} className="h-11 rounded-xl border border-[#ddd3cb] bg-white px-5 font-medium transition hover:bg-[#f6f1ec]">{paciente.dentista ? "Reagendar / Alterar Dentista" : "Atribuir e Agendar"}</button>
                 <button onClick={() => setPacienteSelecionado(paciente)} className="flex h-11 items-center gap-2 rounded-xl border border-[#ddd3cb] px-5 font-medium transition hover:bg-[#f6f1ec]"><MessageSquare className="h-4 w-4" /> Detalhes</button>
               </div>
             </div>
@@ -198,6 +229,7 @@ const Admin = () => {
         </section>
       </main>
 
+      {/* MODAL DE DETALHES DO PACIENTE */}
       {pacienteSelecionado && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="w-full max-w-2xl rounded-3xl bg-white p-7 shadow-2xl">
@@ -211,12 +243,60 @@ const Admin = () => {
         </div>
       )}
 
+      {/* NOVO MODAL COMBO: ATRIBUIR + AGENDAR */}
       {modalAgenda && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="w-full max-w-xl rounded-3xl bg-white p-7 shadow-2xl">
-            <div className="flex items-center justify-between"><div><h2 className="text-3xl font-bold text-[#2f251f]">Atribuir Profissional</h2><p className="mt-1 text-[#7c6f67]">Paciente: {modalAgenda.nome}</p></div><button onClick={() => setModalAgenda(null)}><X className="h-5 w-5 text-[#7c6f67]" /></button></div>
-            <div className="mt-6"><label className="text-sm font-semibold text-[#2f251f]">Selecione um Dentista Voluntário</label><select value={dentistaSelecionado} onChange={(e) => setDentistaSelecionado(e.target.value)} className="mt-2 h-12 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none"><option value="">Selecione o profissional...</option>{listaDentistas.map((d) => <option key={d.id} value={d.id}>{d.nome}</option>)}</select></div>
-            <button onClick={confirmarAgendamento} className="mt-8 h-12 w-full rounded-xl bg-[#f58200] font-bold text-white transition hover:bg-[#ff9d33]">Salvar Vínculo no Oracle</button>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-[#2f251f]">Atribuir e Agendar</h2>
+                <p className="mt-1 text-sm text-[#7c6f67]">Paciente: {modalAgenda.nome}</p>
+              </div>
+              <button onClick={fecharModalAgenda}><X className="h-5 w-5 text-[#7c6f67]" /></button>
+            </div>
+            
+            <div className="mt-6">
+              <label className="text-sm font-semibold text-[#2f251f]">Selecione um Dentista Voluntário</label>
+              <select value={dentistaSelecionado} onChange={(e) => setDentistaSelecionado(e.target.value)} className="mt-2 h-12 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none bg-white focus:border-[#f58200]">
+                <option value="">Selecione o profissional...</option>
+                {listaDentistas.map((d) => <option key={d.id} value={d.id}>{d.nome}</option>)}
+              </select>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <div>
+                <label className="flex items-center gap-2 text-sm font-semibold text-[#2f251f]">
+                  <CalendarDays className="h-4 w-4 text-[#f58200]" /> Data
+                </label>
+                <input 
+                  type="date" 
+                  value={dataSelecionada}
+                  onChange={(e) => setDataSelecionada(e.target.value)}
+                  className="mt-2 h-12 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none bg-white focus:border-[#f58200]" 
+                />
+              </div>
+              <div>
+                <label className="flex items-center gap-2 text-sm font-semibold text-[#2f251f]">
+                  <Clock className="h-4 w-4 text-[#f58200]" /> Horário
+                </label>
+                <select 
+                  value={horarioSelecionado}
+                  onChange={(e) => setHorarioSelecionado(e.target.value)}
+                  className="mt-2 h-12 w-full rounded-xl border border-[#ddd3cb] px-4 outline-none bg-white focus:border-[#f58200]"
+                >
+                  <option value="">Selecione...</option>
+                  {horariosDisponiveis.map(h => <option key={h} value={h}>{h}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <button 
+              onClick={confirmarAgendamento} 
+              disabled={processando}
+              className="mt-8 h-12 w-full rounded-xl bg-[#f58200] font-bold text-white transition hover:bg-[#ff9d33] disabled:opacity-70"
+            >
+              {processando ? "Salvando no Oracle..." : "Confirmar Vínculo e Agenda"}
+            </button>
           </div>
         </div>
       )}

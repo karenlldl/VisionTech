@@ -21,7 +21,6 @@ const Dentista = () => {
   const [descricaoAtendimento, setDescricaoAtendimento] = useState("");
   const [andamento, setAndamento] = useState("EM_ATENDIMENTO"); 
   
-  // NOVO ESTADO: Armazena o nome real do médico logado retornado pelo DTO
   const [nomeLogado, setNomeLogado] = useState(""); 
 
   const idMedicoLogado = 24; 
@@ -117,7 +116,6 @@ const Dentista = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfdfc]">
-      {/* VINCO DINÂMICO: Repassando o estado com o nome do Oracle para a Navbar */}
       <NavPlataformaInterna tipoUsuario="dentista" nomeUsuario={nomeLogado} />
 
       <main className="mx-auto max-w-7xl px-6 py-8">
@@ -143,7 +141,6 @@ const Dentista = () => {
         </section>
       </main>
 
-      {/* MODAL */}
       {modalAberto && pacienteSelecionado && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-5">
           <section className="w-full max-w-130 rounded-xl bg-white p-6 shadow-xl">
@@ -165,7 +162,6 @@ const Dentista = () => {
               </button>
             </div>
 
-            {/* DESCRIÇÃO */}
             <div>
               <label htmlFor="descricaoAtendimento" className="mb-2 block text-sm font-bold text-[#2f251f]">
                 O que foi feito? *
@@ -180,7 +176,6 @@ const Dentista = () => {
               />
             </div>
 
-            {/* ANDAMENTO */}
             <div className="mt-6">
               <p className="mb-3 text-sm font-bold text-[#2f251f]">Andamento</p>
               <div className="space-y-3">
@@ -216,7 +211,6 @@ const Dentista = () => {
               </div>
             </div>
 
-            {/* BOTÕES */}
             <div className="mt-6 flex justify-end gap-3">
               <button
                 type="button"

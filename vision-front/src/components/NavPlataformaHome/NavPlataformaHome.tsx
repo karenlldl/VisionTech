@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const NavPlataformaHome = () => {
     return (
         <>
-        {/* Header */}
       <header className="flex h-[68px] items-center justify-between border-b border-[#e4ded9] bg-white px-6">
         <button
   type="button"

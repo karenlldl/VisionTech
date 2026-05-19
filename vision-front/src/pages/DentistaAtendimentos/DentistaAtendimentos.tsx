@@ -14,7 +14,7 @@ type Atendimento = {
   descricaoAtendimento: string;
   andamento: string;
   dataRegistro: string;
-  observacao: string; // <--- Adicionado para receber o texto do Java
+  observacao: string; 
 };
 
 const DentistaAtendimentos = () => {
@@ -23,7 +23,6 @@ const DentistaAtendimentos = () => {
   const [erro, setErro] = useState("");
   const [nomeLogado, setNomeLogado] = useState("");
   
-  // Estado para controlar o modal de leitura
   const [pacienteSelecionado, setPacienteSelecionado] = useState<Atendimento | null>(null);
 
   const idMedicoLogado = 24; 
@@ -60,7 +59,6 @@ const DentistaAtendimentos = () => {
             descricaoAtendimento: item.procedimento,
             andamento: "Em andamento",
             dataRegistro: item.dataHora.split(" ")[0],
-            // Capturamos a observação que consertamos no backend!
             observacao: item.observacao || "Nenhuma observação clínica anterior registrada."
           }));
 
@@ -128,7 +126,6 @@ const DentistaAtendimentos = () => {
                   <p className="mt-2 text-sm leading-relaxed text-[#6f625d]">{item.descricaoAtendimento}</p>
                 </div>
 
-                {/* BOTÃO NOVO PARA LER AS OBSERVAÇÕES */}
                 <div className="mt-4 flex items-center justify-between">
                   <p className="text-xs text-[#6f625d]">Registrado em: {item.dataRegistro}</p>
                   <button
@@ -145,7 +142,6 @@ const DentistaAtendimentos = () => {
         )}
       </main>
 
-      {/* MODAL DE OBSERVAÇÕES CLÍNICAS */}
       {pacienteSelecionado && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="w-full max-w-2xl rounded-3xl bg-white p-7 shadow-2xl">

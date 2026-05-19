@@ -6,7 +6,6 @@ import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlata
 const CadastrarDentista = () => {
   const navigate = useNavigate();
 
-  // Estados para capturar o que o usuário digita
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [cro, setCro] = useState("");
@@ -38,7 +37,6 @@ const CadastrarDentista = () => {
         throw new Error(txtErro || "Falha ao salvar no banco de dados.");
       }
 
-      // Se o Java retornou 201 Created, avança de tela
       navigate("/admin/equipe/convite-enviado");
     } catch (error: any) {
       console.error(error);

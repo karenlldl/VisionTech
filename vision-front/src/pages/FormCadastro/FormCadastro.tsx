@@ -243,7 +243,6 @@ const handleEnviarFormulario = async (
               )}
             </div>
 
-            {/* Nome */}
             <div>
               <label
                 htmlFor="nome"
@@ -261,7 +260,6 @@ const handleEnviarFormulario = async (
               />
             </div>
 
-            {/* Idade e Cidade */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label
@@ -299,7 +297,6 @@ const handleEnviarFormulario = async (
               </div>
             </div>
 
-            {/* Contato e Renda */}
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label
@@ -337,7 +334,6 @@ const handleEnviarFormulario = async (
               </div>
             </div>
 
-            {/* Situação */}
             <div>
               <label
                 htmlFor="situacao"
@@ -355,7 +351,6 @@ const handleEnviarFormulario = async (
               />
             </div>
 
-            {/* Upload */}
             <div>
               <div className="mb-2 flex items-center gap-2">
                 <Image className="h-4 w-4 text-[#2f251f]" />
@@ -420,7 +415,6 @@ const handleEnviarFormulario = async (
               )}
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-[#f58200] text-sm font-extrabold text-white transition hover:bg-[#df7600]"
