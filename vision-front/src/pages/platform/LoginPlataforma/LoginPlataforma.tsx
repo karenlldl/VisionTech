@@ -55,7 +55,7 @@ const LoginPlataforma = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#fdfdfc] px-5 font-sans text-[#2f251f]">
-      <main className="w-full max-w-[390px]">
+      <main className="w-full max-w-97.5">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2" aria-label="Voltar para a página inicial">
           <img src="/img/logo-laranja.png" alt="Vision Technology" className="h-12 w-auto object-contain" />
         </Link>

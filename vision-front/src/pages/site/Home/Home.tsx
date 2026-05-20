@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import {
   Reveal,
@@ -15,9 +13,6 @@ import OperationalPreview from "../../../components/site/OperationalPreview/Oper
 import { homeFeatures } from "../../../data/site/homeFeatures";
 import FeatureCard from "../../../components/site/FeatureCard/FeatureCard";
 import Cta from "../../../components/site/Cta/Cta";
-
-
-
 
 const Home = () => {
   return (
@@ -66,7 +61,7 @@ const Home = () => {
           </div>
 
           <ScaleOnScroll className="relative mt-20 lg:mt-24">
-           <OperationalPreview />
+            <OperationalPreview />
           </ScaleOnScroll>
 
           <div className="mt-20 border-y border-border/60 py-8">
@@ -119,18 +114,21 @@ const Home = () => {
             </div>
           </Reveal>
 
-          <Stagger className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
-  {homeFeatures.map((feature, index) => (
-    <StaggerItem key={feature.title}>
-      <FeatureCard
-        icon={feature.icon}
-        number={`/0${index + 1}`}
-        title={feature.title}
-        description={feature.description}
-      />
-    </StaggerItem>
-  ))}
-</Stagger>
+          <Stagger
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+            stagger={0.08}
+          >
+            {homeFeatures.map((feature, index) => (
+              <StaggerItem key={feature.title}>
+                <FeatureCard
+                  icon={feature.icon}
+                  number={`/0${index + 1}`}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
       </section>
 
@@ -142,7 +140,7 @@ const Home = () => {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <p className="mb-10 text-[11px] uppercase tracking-[0.25em] text-white/40">
-            Manifesto
+              Manifesto
             </p>
           </Reveal>
 
@@ -159,7 +157,10 @@ const Home = () => {
             </h2>
           </Reveal>
 
-          <Stagger className="mt-16 grid max-w-5xl gap-10 md:grid-cols-3" stagger={0.12}>
+          <Stagger
+            className="mt-16 grid max-w-5xl gap-10 md:grid-cols-3"
+            stagger={0.12}
+          >
             {[
               {
                 number: "01",

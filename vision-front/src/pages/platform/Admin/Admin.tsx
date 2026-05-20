@@ -230,7 +230,6 @@ return {
         </section>
       </main>
 
-      {/* MODAL DE DETALHES DO PACIENTE */}
       {pacienteSelecionado && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="w-full max-w-2xl rounded-3xl bg-white p-7 shadow-2xl">
@@ -244,7 +243,6 @@ return {
         </div>
       )}
 
-      {/* NOVO MODAL COMBO: ATRIBUIR + AGENDAR */}
       {modalAgenda && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
           <div className="w-full max-w-xl rounded-3xl bg-white p-7 shadow-2xl">
