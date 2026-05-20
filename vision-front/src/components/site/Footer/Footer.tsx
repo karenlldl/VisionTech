@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-              Vision Platform
+              Vision Technology
             </p>
 
             <h2 className="display mt-6 text-5xl text-white md:text-7xl">

@@ -38,26 +38,26 @@ import DefinirSenha from "./pages/platform/DefinirSenha/DefinirSenha";
 
 import NotFound from "./pages/platform/NotFound/NotFound";
 import LayoutSite from "./layouts/LayoutSite/LayoutSite";
+import PlataformaSite from "./pages/site/PlataformaSite/PlataformaSite";
+import Sobre from "./pages/site/Sobre/Sobre";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
-        {/* =========================
-            SITE ROUTES
-        ========================= */}
+        {/* SITE ROUTES */}
         <Route element={<LayoutSite />}>
           <Route path="/" element={<Home />} />
+          <Route path="/sobre" element={<Sobre />} />
           <Route path="/solucao" element={<Solucao />} />
+          <Route path="/plataforma-site" element={<PlataformaSite/>} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/time" element={<Time />} />
         </Route>
 
-        {/* =========================
-            PLATFORM ROUTES
-        ========================= */}
+        {/* PLATFORM ROUTES */}
 
         <Route path="/plataforma" element={<PlataformaHome />} />
 

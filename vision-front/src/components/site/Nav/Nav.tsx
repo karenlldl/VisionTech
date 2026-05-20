@@ -6,7 +6,7 @@ const navLinks = [
   { path: "/", label: "Início" },
   { path: "/sobre", label: "Sobre" },
   { path: "/solucao", label: "Solução" },
-  { path: "/plataforma", label: "Plataforma" },
+  { path: "/plataforma-site", label: "Plataforma" },
   { path: "/faq", label: "FAQ" },
   { path: "/contato", label: "Contato" },
   { path: "/time", label: "Time" },
@@ -47,7 +47,7 @@ const Nav = () => {
           className="flex items-center"
         >
           <img
-            src="/images/black-logo.png"
+            src="/img/black-logo.png"
             alt="Vision"
             className="h-8 w-auto object-contain"
           />
@@ -74,7 +74,7 @@ const Nav = () => {
         </ul>
 
         <Link
-          to="https://vision-tech-platform.vercel.app/"
+          to="/plataforma"
           className="hidden items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[#E85002] lg:inline-flex"
         >
           Acessar plataforma
