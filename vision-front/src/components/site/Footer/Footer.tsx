@@ -50,7 +50,7 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 <li><Link to="/solucao" className="transition hover:text-brand-orange">Solução</Link></li>
-                <li><Link to="/plataforma" className="transition hover:text-brand-orange">Plataforma</Link></li>
+                <li><Link to="/plataforma-site" className="transition hover:text-brand-orange">Plataforma</Link></li>
               </ul>
             </div>
 
@@ -60,7 +60,7 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 <li><Link to="/sobre" className="transition hover:text-brand-orange">Sobre</Link></li>
-                <li><Link to="/integrantes" className="transition hover:text-brand-orange">Time</Link></li>
+                <li><Link to="/time" className="transition hover:text-brand-orange">Time</Link></li>
                 <li><Link to="/contato" className="transition hover:text-brand-orange">Contato</Link></li>
               </ul>
             </div>
