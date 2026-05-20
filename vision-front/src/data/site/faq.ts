@@ -10,14 +10,14 @@ export const faqItems = [
       "A plataforma foi pensada para projetos sociais, organizações de saúde, clínicas, institutos e equipes que lidam com triagem, acompanhamento e gestão de atendimentos.",
   },
   {
-    question: "Como funciona a triagem?",
+    question: "A Vision é apenas para ONGs?",
     answer:
-      "A triagem organiza os dados dos pacientes e ajuda a equipe a visualizar informações importantes para priorizar os casos conforme critérios definidos pela organização.",
+      "Não. A Vision pode ser adaptada para ONGs, institutos, clínicas, projetos públicos, iniciativas sociais e organizações que precisam gerenciar triagens, atendimentos, equipes e indicadores.",
   },
   {
-    question: "Como os atendimentos são organizados?",
+    question: "Qual problema a Vision resolve?",
     answer:
-      "Os atendimentos podem ser acompanhados por status, agenda, histórico e dashboards, permitindo que a equipe tenha uma visão clara da operação.",
+      "A Vision resolve o problema da desorganização operacional causada por informações espalhadas, processos manuais, falta de acompanhamento claro e dificuldade para priorizar casos.",
   },
   {
     question: "O projeto já está funcionando?",
@@ -30,8 +30,23 @@ export const faqItems = [
       "O objetivo é transformar processos manuais e descentralizados em uma operação mais clara, escalável e orientada por dados.",
   },
   {
-    question: "Como a ONG se beneficia?",
+    question: "A Vision possui dashboards?",
     answer:
-      "A ONG ganha mais organização, rastreabilidade, controle de pacientes, visualização de prioridades e apoio para tomar decisões com mais segurança.",
+      "Sim. A proposta da Vision inclui dashboards para acompanhar indicadores como quantidade de pacientes, origem dos atendimentos, faixa etária, prioridade dos casos e andamento da operação.",
   },
+  {
+    question: "A Vision substitui o trabalho humano?",
+    answer:
+      "Não. A Vision foi criada para apoiar equipes humanas, organizando informações e tornando os processos mais claros. A decisão e o cuidado continuam sendo conduzidos pelos profissionais responsáveis.",
+  },
+  {
+    question: "A plataforma pode ser personalizada?",
+    answer:
+      "Sim. A ideia da Vision é ser uma solução flexível, podendo adaptar fluxos, categorias, prioridades e indicadores conforme a realidade de cada organização."
+  },
+  {
+    question: "Quais tipos de usuários podem acessar a Vision?",
+    answer:
+      "A plataforma pode ter diferentes perfis de acesso, como administradores, profissionais de atendimento, voluntários ou equipes responsáveis pela triagem e acompanhamento dos casos."
+  }
 ];
