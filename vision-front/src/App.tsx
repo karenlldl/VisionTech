@@ -1,23 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import PlataformaHome from "./pages/PlataformaHome/PlataformaHome";
-import FormCadastro from "./pages/FormCadastro/FormCadastro";
-import CadastroEnviado from "./pages/CadastroEnviado/CadastroEnviado";
-import LoginPlataforma from "./pages/LoginPlataforma/LoginPlataforma";
-import Dentista from "./pages/Dentista/Dentista";
-import Admin from "./pages/Admin/Admin";
-import DentistaHistorico from "./pages/DentistaHistorico/DentistaHistorico";
-import DentistaAtendimentos from "./pages/DentistaAtendimentos/DentistaAtendimentos";
-import NovoPaciente from "./pages/NovoPaciente/NovoPaciente";
-import AdminAgenda from "./pages/AdminAgenda/AdminAgenda";
-import AdminDashboards from "./pages/AdminDashboards/AdminDashboards";
-import DentistaAgenda from "./pages/DentistaAgenda/DentistaAgenda";
-import Equipe from "./pages/Equipe/Equipe";
-import CadastrarDentista from "./pages/CadastrarDentista/CadastrarDentista";
-import CadastrarFuncionario from "./pages/CadastrarFuncionario/CadastrarFuncionario";
-import ConviteEnviado from "./pages/ConviteEnviado/ConviteEnviado";
-import DefinirSenha from "./pages/DefinirSenha/DefinirSenha";
-import NotFound from "./pages/NotFound/NotFound";
+import PlataformaHome from "./pages/platform/PlataformaHome/PlataformaHome";
+import FormCadastro from "./pages/platform/FormCadastro/FormCadastro";
+import CadastroEnviado from "./pages/platform/CadastroEnviado/CadastroEnviado";
+import LoginPlataforma from "./pages/platform/LoginPlataforma/LoginPlataforma";
+import Admin from "./pages/platform/Admin/Admin";
+import AdminAgenda from "./pages/platform/AdminAgenda/AdminAgenda";
+import NovoPaciente from "./pages/platform/NovoPaciente/NovoPaciente";
+import AdminDashboards from "./pages/platform/AdminDashboards/AdminDashboards";
+import Equipe from "./pages/platform/Equipe/Equipe";
+import CadastrarFuncionario from "./pages/platform/CadastrarFuncionario/CadastrarFuncionario";
+import Dentista from "./pages/platform/Dentista/Dentista";
+import DentistaAgenda from "./pages/platform/DentistaAgenda/DentistaAgenda";
+import DentistaAtendimentos from "./pages/platform/DentistaAtendimentos/DentistaAtendimentos";
+import DentistaHistorico from "./pages/platform/DentistaHistorico/DentistaHistorico";
+import CadastrarDentista from "./pages/platform/CadastrarDentista/CadastrarDentista";
+import ConviteEnviado from "./pages/platform/ConviteEnviado/ConviteEnviado";
+import DefinirSenha from "./pages/platform/DefinirSenha/DefinirSenha";
+import NotFound from "./pages/platform/NotFound/NotFound";
 
 
 function App() {
