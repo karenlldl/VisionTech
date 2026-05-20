@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import type { ElementType } from "react";
+import { Link } from "react-router-dom";
 
 type FeatureCardProps = {
   icon: ElementType;
@@ -30,10 +31,10 @@ const FeatureCard = ({
         {description}
       </p>
 
-      <div className="mt-6 inline-flex items-center gap-1 text-xs text-foreground/60 transition group-hover:text-brand-orange">
+      <Link to="/plataforma-site" className="mt-6 inline-flex items-center gap-1 text-xs text-foreground/60 transition group-hover:text-brand-orange">
         Saber mais
         <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-      </div>
+      </Link>
     </article>
   );
 };
