@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
-import PacienteCard from "../../components/Agenda/PacienteCard";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+import PacienteCard from "../../../components/platform/Agenda/PacienteCard";
+
 
 interface EventoJava {
   idAtendimento: number;

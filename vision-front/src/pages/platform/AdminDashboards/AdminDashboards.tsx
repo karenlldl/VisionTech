@@ -3,7 +3,8 @@ import {
   BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from "recharts";
 import { Filter, RotateCcw } from "lucide-react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 const orange = "#f58200";
 const green = "#b5bb0f";

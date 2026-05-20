@@ -1,6 +1,7 @@
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 const ConviteEnviado = () => {
   return (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Stethoscope, CalendarDays, Globe, Building2, MessageSquare, X } from "lucide-react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 type Atendimento = {
   id: string;

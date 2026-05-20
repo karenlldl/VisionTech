@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Send, Stethoscope } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
 
 const CadastrarDentista = () => {
   const navigate = useNavigate();

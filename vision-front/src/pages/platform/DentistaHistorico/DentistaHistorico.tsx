@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { History, CalendarDays, Building2 } from "lucide-react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 type AtendimentoHistorico = {
   id: string;

@@ -4,7 +4,8 @@ import {
   Globe,
   Stethoscope,
 } from "lucide-react";
-import type { Paciente } from "../../data/pacientes";
+import type { Paciente } from "../../../data/platform/pacientes";
+
 
 
 type Props = {

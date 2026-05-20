@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import NavPlataformaHome from "../../components/NavPlataformaHome/NavPlataformaHome";
+import NavPlataformaHome from "../../../components/platform/NavPlataformaHome/NavPlataformaHome";
+
 
 const CadastroEnviado = () => {
   return (

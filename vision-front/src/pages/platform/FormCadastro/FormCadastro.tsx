@@ -7,7 +7,8 @@ import {
   Upload,
   Send,
 } from "lucide-react";
-import NavPlataformaHome from "../../components/NavPlataformaHome/NavPlataformaHome";
+import NavPlataformaHome from "../../../components/platform/NavPlataformaHome/NavPlataformaHome";
+
 
 type Programa = "apolonias" | "dentistas";
 

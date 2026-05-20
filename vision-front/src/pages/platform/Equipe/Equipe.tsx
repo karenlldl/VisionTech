@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Stethoscope, UserRoundPlus, ArrowRight } from "lucide-react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 const Equipe = () => {
   const [nomeAdminLogado, setNomeAdminLogado] = useState("Carregando...");

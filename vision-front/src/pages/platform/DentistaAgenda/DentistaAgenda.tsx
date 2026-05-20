@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
-import AgendaSemanal from "../../components/Agenda/AgendaSemanal";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+import AgendaSemanal from "../../../components/platform/Agenda/AgendaSemanal";
+
 
 interface EventoJava {
   idAtendimento: number;

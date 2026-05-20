@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { HeartHandshake, GraduationCap, Send } from "lucide-react";
-import NavPlataformaInterna from "../../components/NavPlataformaInterna/NavPlataformaInterna";
+import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
+
 
 const NovoPaciente = () => {
   const [nomeAdminLogado, setNomeAdminLogado] = useState("Carregando...");

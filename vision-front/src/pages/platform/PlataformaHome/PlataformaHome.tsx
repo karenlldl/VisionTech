@@ -1,7 +1,7 @@
 import { Heart, Users, ArrowRight } from "lucide-react";
-import HomeInfoCard from "../../components/HomeInfoCard/HomeInfoCard";
 import { Link } from "react-router-dom";
-import NavPlataformaHome from "../../components/NavPlataformaHome/NavPlataformaHome";
+import NavPlataformaHome from "../../../components/platform/NavPlataformaHome/NavPlataformaHome";
+import HomeInfoCard from "../../../components/platform/HomeInfoCard/HomeInfoCard";
 
 const cards = [
   {
