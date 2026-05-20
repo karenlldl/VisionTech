@@ -139,13 +139,11 @@ return {
 
     setProcessando(true);
     try {
-      // 1. Bate no Java para atribuir o médico
       const resAtribuir = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/atribuir-medico/${dentistaSelecionado}`, { 
         method: "PUT" 
       });
       if (!resAtribuir.ok) throw new Error("Erro ao atualizar o vínculo no banco.");
 
-      // 2. Bate no Java para marcar a data e hora
       const dataHoraFormatada = `${dataSelecionada} ${horarioSelecionado}`;
       const resAgendar = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/marcar-consulta`, {
         method: "PUT",
