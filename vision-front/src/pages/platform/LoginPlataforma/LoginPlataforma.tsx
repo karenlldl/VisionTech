@@ -48,15 +48,19 @@ const LoginPlataforma = () => {
         throw new Error("Tipo de acesso desconhecido pelo sistema.");
       }
 
-    } catch (error: any) {
-      setErro(error.message);
-    }
-  };
+   } catch (error: unknown) {
+  if (error instanceof Error) {
+    setErro(error.message);
+  } else {
+    setErro("Erro inesperado ao fazer login.");
+  }
+}
+};
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#fdfdfc] px-5 font-sans text-[#2f251f]">
       <main className="w-full max-w-97.5">
-        <Link to="/" className="mb-8 flex items-center justify-center gap-2" aria-label="Voltar para a página inicial">
+        <Link to="/plataforma" className="mb-8 flex items-center justify-center gap-2" aria-label="Voltar para a página inicial da plataforma">
           <img src="/img/logo-laranja.png" alt="Vision Technology" className="h-12 w-auto object-contain" />
         </Link>
 
