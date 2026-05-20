@@ -1,4 +1,4 @@
-import { Heart, Users, ArrowRight } from "lucide-react";
+import { Heart, Users, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import NavPlataformaHome from "../../../components/platform/NavPlataformaHome/NavPlataformaHome";
 import HomeInfoCard from "../../../components/platform/HomeInfoCard/HomeInfoCard";
@@ -81,6 +81,14 @@ const PlataformaHome = () => {
             />
           ))}
         </section>
+
+        <Link
+          to="/"
+          className="px-5 py-5 text-sm font-semibold text-orange-600 transition hover:text-orange-700 flex items-center gap-1 mt-5 "
+          >Clique aqui para conhecer o site institucional
+          <ArrowUpRight className="h-4 w-4" />
+        </Link>
+        
       </main>
 
       <footer className="mt-20 border-t border-[#e4ded9] bg-white px-6 py-6 text-center text-sm text-[#6f625d]">

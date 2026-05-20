@@ -101,7 +101,7 @@ const LoginPlataforma = () => {
           </form>
         </section>
 
-        <Link to="/" className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg border border-[#ded7d1] bg-white px-4 py-3 text-sm font-semibold text-[#2f251f] transition hover:bg-[#f7f4f1]">
+        <Link to="/plataforma" className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg border border-[#ded7d1] bg-white px-4 py-3 text-sm font-semibold text-[#2f251f] transition hover:bg-[#f7f4f1]">
           <ArrowLeft className="h-4 w-4" /> Voltar para o início
         </Link>
       </main>

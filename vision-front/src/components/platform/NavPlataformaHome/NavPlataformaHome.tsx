@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NavPlataformaHome = () => {
+    const navigate = useNavigate();
     return (
         <>
       <header className="flex h-[68px] items-center justify-between border-b border-[#e4ded9] bg-white px-6">
         <button
   type="button"
-  onClick={() => (window.location.href = "/")}
+  onClick={() => navigate("/plataforma")}
   className="flex items-center"
-  aria-label="Voltar para a página inicial"
+  aria-label="Voltar para a home da plataforma"
 >
   <img
     src="/img/logo-laranja.png"
