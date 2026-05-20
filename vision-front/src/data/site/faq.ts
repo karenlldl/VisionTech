@@ -1,6 +1,6 @@
 export const faqItems = [
   {
-    question: "O que é A Vision?",
+    question: "O que é a Vision?",
     answer:
       "A Vision é uma plataforma de gestão operacional para organizações, institutos, ONGs e clínicas que precisam organizar fluxos de atendimento, pacientes, equipes e indicadores.",
   },
