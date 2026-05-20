@@ -57,10 +57,10 @@ const Home = () => {
               </Link>
 
               <Link
-                to="/plataforma"
+                to="/plataforma-site"
                 className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/60 px-5 py-3 text-sm font-medium backdrop-blur transition hover:border-foreground/40"
               >
-                Ver a plataforma
+                Detalhes da plataforma
               </Link>
             </div>
           </div>
