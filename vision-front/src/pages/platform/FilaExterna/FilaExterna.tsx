@@ -5,6 +5,7 @@ import {
   Eye,
   ImageIcon,
   User,
+  Users,
   CalendarDays,
   MapPin,
   Phone,
@@ -40,13 +41,14 @@ const pacienteTeste: PacienteExterno = {
   status: "Aguardando análise",
   dataCadastro: "20/05/2026",
   descricao:
-    "Paciente cadastrada pelo formulário externo. Relata dor frequente, sensibilidade e dificuldade para mastigar. A responsável anexou uma imagem para avaliação inicial.",
+    "Paciente cadastrada pelo formulário externo. Relata dor frequente, sensibilidade e dificuldade para mastigar. A pessoa anexou uma imagem para avaliação inicial.",
   fotoDente: "/img/foto-dente-teste.png",
 };
 
 const FilaExterna = () => {
   const [paciente, setPaciente] = useState<PacienteExterno>(pacienteTeste);
   const [mostrarDetalhes, setMostrarDetalhes] = useState(false);
+  const [modalRecusaAberto, setModalRecusaAberto] = useState(false);
 
   const aprovarPaciente = () => {
     setPaciente((prev) => ({
@@ -59,13 +61,21 @@ const FilaExterna = () => {
     );
   };
 
-  const recusarPaciente = () => {
+  const abrirModalRecusa = () => {
+    setModalRecusaAberto(true);
+  };
+
+  const fecharModalRecusa = () => {
+    setModalRecusaAberto(false);
+  };
+
+  const confirmarRecusa = () => {
     setPaciente((prev) => ({
       ...prev,
       status: "Recusado",
     }));
 
-    alert("Paciente recusado. O cadastro foi marcado como recusado.");
+    setModalRecusaAberto(false);
   };
 
   const statusClasses = {
@@ -89,9 +99,10 @@ const FilaExterna = () => {
           </h1>
 
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#6f625d] md:text-base">
-            Aqui ficam os pacientes cadastrados pelo formulário externo. A equipe
-            pode analisar as informações, visualizar a foto anexada e aprovar ou
-            recusar o cadastro antes de encaminhar para o fluxo principal.
+            Aqui ficam os pacientes cadastrados pelo formulário externo. A
+            equipe pode analisar as informações, visualizar a foto anexada e
+            aprovar ou recusar o cadastro antes de encaminhar para o fluxo
+            principal.
           </p>
         </div>
 
@@ -101,6 +112,7 @@ const FilaExterna = () => {
               <h2 className="text-xl font-bold text-black">
                 Pacientes aguardando avaliação
               </h2>
+
               <p className="mt-1 text-sm text-[#6f625d]">
                 1 paciente encontrado na fila externa.
               </p>
@@ -126,13 +138,17 @@ const FilaExterna = () => {
                       Cadastro externo • {paciente.projeto}
                     </p>
                   </div>
-
                 </div>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <div className="flex items-center gap-3 text-sm text-[#6f625d]">
                     <User className="h-4 w-4 text-[#f58200]" />
                     {paciente.idade} anos
+                  </div>
+
+                  <div className="flex items-center gap-3 text-sm text-[#6f625d]">
+                    <Users className="h-4 w-4 text-[#f58200]" />
+                    Responsável: {paciente.responsavel}
                   </div>
 
                   <div className="flex items-center gap-3 text-sm text-[#6f625d]">
@@ -178,7 +194,7 @@ const FilaExterna = () => {
 
                   <button
                     type="button"
-                    onClick={recusarPaciente}
+                    onClick={abrirModalRecusa}
                     disabled={paciente.status === "Recusado"}
                     className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
                   >
@@ -213,27 +229,31 @@ const FilaExterna = () => {
                 <div className="mt-4 grid gap-5 md:grid-cols-2">
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-[#6f625d]">
-                      Responsável
+                      Projeto indicado
                     </p>
+
                     <p className="mt-1 text-sm font-semibold text-black">
-                      {paciente.responsavel}
+                      {paciente.projeto}
                     </p>
                   </div>
 
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wide text-[#6f625d]">
-                      Projeto indicado
+                      Data do cadastro
                     </p>
+
                     <p className="mt-1 text-sm font-semibold text-black">
-                      {paciente.projeto}
+                      {paciente.dataCadastro}
                     </p>
                   </div>
+
                 </div>
 
                 <div className="mt-5">
                   <p className="text-xs font-semibold uppercase tracking-wide text-[#6f625d]">
                     Observações enviadas
                   </p>
+
                   <p className="mt-2 text-sm leading-relaxed text-[#6f625d]">
                     {paciente.descricao}
                   </p>
@@ -243,6 +263,40 @@ const FilaExterna = () => {
           </article>
         </section>
       </main>
+
+      {modalRecusaAberto && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-black">
+                Recusar cadastro
+              </h2>
+
+              <p className="mt-2 text-sm leading-relaxed text-[#6f625d]">
+                Tem certeza que deseja recusar este cadastro?
+              </p>
+            </div>
+
+            <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={fecharModalRecusa}
+                className="rounded-full border border-[#ded7d1] px-5 py-3 text-sm font-semibold text-[#6f625d] transition hover:border-[#f58200] hover:text-[#f58200]"
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                onClick={confirmarRecusa}
+                className="rounded-full bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700"
+              >
+                Recusar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

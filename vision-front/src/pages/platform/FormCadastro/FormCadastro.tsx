@@ -7,10 +7,26 @@ import {
   Upload,
   Send,
 } from "lucide-react";
+
 import NavPlataformaHome from "../../../components/platform/NavPlataformaHome/NavPlataformaHome";
 
-
 type Programa = "apolonias" | "dentistas";
+
+const calcularIdade = (dataNascimento: string) => {
+  if (!dataNascimento) return 0;
+
+  const hoje = new Date();
+  const nascimento = new Date(dataNascimento);
+
+  let idade = hoje.getFullYear() - nascimento.getFullYear();
+  const mes = hoje.getMonth() - nascimento.getMonth();
+
+  if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+    idade--;
+  }
+
+  return idade;
+};
 
 const FormCadastro = () => {
   const navigate = useNavigate();
@@ -18,7 +34,7 @@ const FormCadastro = () => {
   const [programaSelecionado, setProgramaSelecionado] =
     useState<Programa>("apolonias");
 
-  const [idade, setIdade] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
   const [erroPrograma, setErroPrograma] = useState("");
 
   const [imagensSelecionadas, setImagensSelecionadas] = useState<string[]>([]);
@@ -27,26 +43,29 @@ const FormCadastro = () => {
   const isApolonias = programaSelecionado === "apolonias";
   const isDentistas = programaSelecionado === "dentistas";
 
-  const idadeInformada = idade.trim() !== "";
-  const idadeNumerica = Number(idade);
+  const dataNascimentoInformada = dataNascimento.trim() !== "";
+  const idadeCalculada = calcularIdade(dataNascimento);
 
-  const dentistasBloqueado = idadeInformada && idadeNumerica > 17;
+  const dentistasBloqueado =
+    dataNascimentoInformada && (idadeCalculada < 11 || idadeCalculada > 17);
 
   const selectedCardClass = "border-[#f58200] bg-[#fffaf5]";
   const unselectedCardClass =
     "border-[#ded7d1] bg-white hover:border-[#f58200] hover:bg-[#fffaf5]";
 
-  const handleAlterarIdade = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const novaIdade = event.target.value;
+  const handleAlterarDataNascimento = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const novaData = event.target.value;
 
-    setIdade(novaIdade);
+    setDataNascimento(novaData);
 
-    const numero = Number(novaIdade);
+    const idade = calcularIdade(novaData);
 
-    if (programaSelecionado === "dentistas" && numero > 17) {
+    if (programaSelecionado === "dentistas" && (idade < 11 || idade > 17)) {
       setProgramaSelecionado("apolonias");
       setErroPrograma(
-        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+        "O programa Dentistas do Bem é permitido apenas para pessoas de 11 a 17 anos."
       );
       return;
     }
@@ -63,7 +82,7 @@ const FormCadastro = () => {
     if (dentistasBloqueado) {
       setProgramaSelecionado("apolonias");
       setErroPrograma(
-        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+        "O programa Dentistas do Bem é permitido apenas para pessoas de 11 a 17 anos."
       );
       return;
     }
@@ -89,16 +108,17 @@ const FormCadastro = () => {
     setErroImagens("");
   };
 
-  
-const handleEnviarFormulario = async (
+  const handleEnviarFormulario = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
-    if (programaSelecionado === "dentistas" && idadeNumerica > 17) {
+    const idade = calcularIdade(dataNascimento);
+
+    if (programaSelecionado === "dentistas" && (idade < 11 || idade > 17)) {
       setProgramaSelecionado("apolonias");
       setErroPrograma(
-        "O programa Dentistas do Bem é permitido apenas para pessoas de até 17 anos."
+        "O programa Dentistas do Bem é permitido apenas para pessoas de 11 a 17 anos."
       );
       return;
     }
@@ -109,16 +129,34 @@ const handleEnviarFormulario = async (
     }
 
     try {
-      const inputNome = (document.getElementById("nome") as HTMLInputElement).value;
-      const inputContato = (document.getElementById("contato") as HTMLInputElement).value;
-      const inputRenda = (document.getElementById("renda") as HTMLInputElement).value;
+      const inputNome = document.getElementById("nome") as HTMLInputElement;
+      const inputEmail = document.getElementById("email") as HTMLInputElement;
+      const inputContato = document.getElementById(
+        "contato"
+      ) as HTMLInputElement;
+      const inputCidade = document.getElementById("cidade") as HTMLInputElement;
+      const inputRenda = document.getElementById("renda") as HTMLInputElement;
+      const inputSituacao = document.getElementById(
+        "situacao"
+      ) as HTMLTextAreaElement;
+      const inputResponsavel = document.getElementById(
+        "responsavel"
+      ) as HTMLInputElement | null;
 
       const dadosPaciente = {
-        nome: inputNome,
-        idade: idadeNumerica,
-        telefone: inputContato,
-        rendaBrutaTotal: Number(inputRenda),
-        programa: programaSelecionado
+        nome: inputNome.value,
+        email: inputEmail.value,
+        dataNascimento,
+        idade,
+        telefone: inputContato.value,
+        cidade: inputCidade.value,
+        rendaBrutaTotal: Number(inputRenda.value),
+        programa: programaSelecionado,
+        nomeResponsavel:
+          programaSelecionado === "dentistas"
+            ? inputResponsavel?.value || ""
+            : "",
+        situacao: inputSituacao.value,
       };
 
       const response = await fetch("http://localhost:8081/pacientes", {
@@ -159,7 +197,6 @@ const handleEnviarFormulario = async (
           </div>
 
           <form onSubmit={handleEnviarFormulario} className="space-y-5">
-            {/* Programa desejado */}
             <div>
               <label className="mb-3 block text-sm font-semibold text-[#2f251f]">
                 Programa desejado *
@@ -206,7 +243,7 @@ const handleEnviarFormulario = async (
                   }`}
                   title={
                     dentistasBloqueado
-                      ? "Disponível apenas para pessoas de até 17 anos."
+                      ? "Disponível apenas para pessoas de 11 a 17 anos."
                       : ""
                   }
                 >
@@ -232,7 +269,7 @@ const handleEnviarFormulario = async (
                   </strong>
 
                   <span className="mt-1 block text-xs leading-snug text-[#6f625d]">
-                    Crianças e jovens de até 17 anos em vulnerabilidade social
+                    Crianças e jovens de 11 a 17 anos em vulnerabilidade social
                   </span>
                 </label>
               </div>
@@ -264,19 +301,18 @@ const handleEnviarFormulario = async (
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label
-                  htmlFor="idade"
+                  htmlFor="dataNascimento"
                   className="mb-2 block text-sm font-semibold text-[#2f251f]"
                 >
-                  Idade *
+                  Data de nascimento *
                 </label>
 
                 <input
-                  id="idade"
-                  type="number"
-                  min="1"
+                  id="dataNascimento"
+                  type="date"
                   required
-                  value={idade}
-                  onChange={handleAlterarIdade}
+                  value={dataNascimento}
+                  onChange={handleAlterarDataNascimento}
                   className="h-10 w-full rounded-lg border border-[#ded7d1] bg-white px-3 text-sm outline-none transition focus:border-[#f58200] focus:ring-2 focus:ring-[#f58200]/20"
                 />
               </div>
@@ -298,6 +334,25 @@ const handleEnviarFormulario = async (
               </div>
             </div>
 
+            {isDentistas && (
+              <div>
+                <label
+                  htmlFor="responsavel"
+                  className="mb-2 block text-sm font-semibold text-[#2f251f]"
+                >
+                  Nome do responsável *
+                </label>
+
+                <input
+                  id="responsavel"
+                  type="text"
+                  placeholder="Nome completo do responsável"
+                  required={isDentistas}
+                  className="h-10 w-full rounded-lg border border-[#ded7d1] bg-white px-3 text-sm outline-none transition placeholder:text-[#8f8580] focus:border-[#f58200] focus:ring-2 focus:ring-[#f58200]/20"
+                />
+              </div>
+            )}
+
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label
@@ -318,21 +373,38 @@ const handleEnviarFormulario = async (
 
               <div>
                 <label
-                  htmlFor="renda"
+                  htmlFor="email"
                   className="mb-2 block text-sm font-semibold text-[#2f251f]"
                 >
-                  Renda familiar (R$) *
+                  Email *
                 </label>
 
                 <input
-                  id="renda"
-                  type="number"
-                  min="0"
-                  placeholder="Ex: 1200"
+                  id="email"
+                  type="email"
+                  placeholder="voce@email.com"
                   required
                   className="h-10 w-full rounded-lg border border-[#ded7d1] bg-white px-3 text-sm outline-none transition placeholder:text-[#8f8580] focus:border-[#f58200] focus:ring-2 focus:ring-[#f58200]/20"
                 />
               </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="renda"
+                className="mb-2 block text-sm font-semibold text-[#2f251f]"
+              >
+                Renda familiar (R$) *
+              </label>
+
+              <input
+                id="renda"
+                type="number"
+                min="0"
+                placeholder="Ex: 1200"
+                required
+                className="h-10 w-full rounded-lg border border-[#ded7d1] bg-white px-3 text-sm outline-none transition placeholder:text-[#8f8580] focus:border-[#f58200] focus:ring-2 focus:ring-[#f58200]/20"
+              />
             </div>
 
             <div>
