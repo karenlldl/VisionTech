@@ -91,7 +91,7 @@ const AdminAgenda = () => {
       <main className="mx-auto max-w-7xl px-6 py-8">
         {loading && (
           <p className="text-center text-sm font-semibold text-[#6f625d] py-12">
-            Varrendo os agendamentos no Oracle...
+            Carregando agendamentos...
           </p>
         )}
 

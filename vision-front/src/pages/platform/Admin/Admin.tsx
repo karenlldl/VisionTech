@@ -180,7 +180,7 @@ return {
       <main className="mx-auto max-w-7xl px-6 py-8">
         <div>
           <h1 className="text-4xl font-bold text-[#2f251f]">Painel de controle</h1>
-          <p className="mt-1 text-[#7c6f67]">Gerencie pacientes e acompanhe o processo de atendimento real do Oracle.</p>
+          <p className="mt-1 text-[#7c6f67]">Visualize os pacientes cadastrados, acompanhe o status dos atendimentos e organize a distribuição para os dentistas.</p>
         </div>
 
         <section className="mt-8 grid gap-4 md:grid-cols-5">

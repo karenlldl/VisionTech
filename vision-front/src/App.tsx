@@ -40,6 +40,7 @@ import NotFound from "./pages/platform/NotFound/NotFound";
 import LayoutSite from "./layouts/LayoutSite/LayoutSite";
 import PlataformaSite from "./pages/site/PlataformaSite/PlataformaSite";
 import Sobre from "./pages/site/Sobre/Sobre";
+import FilaExterna from "./pages/platform/FilaExterna/FilaExterna";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
 
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/agenda" element={<AdminAgenda />} />
+        <Route path="/admin/fila-externa" element={<FilaExterna />} />
         <Route path="/admin/novo-paciente" element={<NovoPaciente />} />
         <Route path="/admin/dashboards" element={<AdminDashboards />} />
         <Route path="/admin/equipe" element={<Equipe />} />

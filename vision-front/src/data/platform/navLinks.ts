@@ -15,6 +15,11 @@ export const adminLinks = [
     icon: LayoutGrid,
   },
   {
+  label: "Fila externa",
+  path: "/admin/fila-externa",
+  icon: ClipboardList,
+},
+  {
     label: "Agenda",
     path: "/admin/agenda",
     icon: CalendarDays,
