@@ -6,7 +6,6 @@ const navLinks = [
   { path: "/", label: "Início" },
   { path: "/sobre", label: "Sobre" },
   { path: "/solucao", label: "Solução" },
-  { path: "/plataforma-site", label: "Plataforma" },
   { path: "/faq", label: "FAQ" },
   { path: "/contato", label: "Contato" },
   { path: "/time", label: "Time" },
