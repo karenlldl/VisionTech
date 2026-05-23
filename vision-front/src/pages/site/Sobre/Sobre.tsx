@@ -62,6 +62,23 @@ const Sobre = () => {
             ))}
           </Stagger>
 
+          
+        </div>
+      </section>
+
+      <section className="bg-brand-mist px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+        <div className="mx-auto max-w-7xl">
+          {aboutStorySections.map((section) => (
+            <Reveal key={section.number}>
+              <AboutStorySection
+                number={section.number}
+                icon={section.icon}
+                title={section.title}
+                paragraphs={section.paragraphs}
+              />
+            </Reveal>
+          ))}
+
           <Reveal delay={0.1}>
             <div className="mt-10 rounded-[28px] border border-border bg-white p-6 shadow-soft sm:rounded-[36px] sm:p-8 md:flex md:items-center md:justify-between md:gap-10 lg:p-12">
               <div>
@@ -87,21 +104,7 @@ const Sobre = () => {
             </div>
           </Reveal>
         </div>
-      </section>
 
-      <section className="bg-brand-mist px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
-        <div className="mx-auto max-w-7xl">
-          {aboutStorySections.map((section) => (
-            <Reveal key={section.number}>
-              <AboutStorySection
-                number={section.number}
-                icon={section.icon}
-                title={section.title}
-                paragraphs={section.paragraphs}
-              />
-            </Reveal>
-          ))}
-        </div>
       </section>
     </>
   );

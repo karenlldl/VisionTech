@@ -41,11 +41,13 @@ import LayoutSite from "./layouts/LayoutSite/LayoutSite";
 import Sobre from "./pages/site/Sobre/Sobre";
 import FilaExterna from "./pages/platform/FilaExterna/FilaExterna";
 import NotFoundSite from "./pages/site/NotFoundSite/NotFoundSite";
+import ScrollToTop from "./components/site/ScrollToTop/ScrollToTop";
 
 
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
 
         {/* SITE ROUTES */}
