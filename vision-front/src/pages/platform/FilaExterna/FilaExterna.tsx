@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CheckCircle, XCircle, Eye, ImageIcon, User, Users, CalendarDays, MapPin, Phone, Mail } from "lucide-react";
+import { CheckCircle, XCircle, Eye, ImageIcon, User, Phone, Mail } from "lucide-react";
 import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
 
 type PacienteExterno = {
