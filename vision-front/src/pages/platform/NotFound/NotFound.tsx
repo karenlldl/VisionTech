@@ -24,7 +24,7 @@ export default function NotFound() {
         </p>
 
         <Link
-          to="/"
+          to="/plataforma"
           className="mt-8 inline-flex items-center justify-center gap-2 rounded-lg bg-[#f58200] px-6 py-3 font-bold text-white transition hover:bg-[#df7600]"
         >
           <Home size={18} />
