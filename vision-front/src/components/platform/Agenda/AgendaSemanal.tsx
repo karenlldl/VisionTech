@@ -14,7 +14,6 @@ type EventoAgenda = {
 type AgendaSemanalProps = {
   titulo?: string;
   eventos: EventoAgenda[];
-  modo?: "admin" | "dentista";
 };
 
 const dias = ["SEG", "TER", "QUA", "QUI", "SEX"] as const;
