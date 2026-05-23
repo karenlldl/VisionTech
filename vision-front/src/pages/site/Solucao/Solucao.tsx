@@ -7,6 +7,7 @@ import SolutionDashboard from "../../../components/site/SolutionDashboard/Soluti
 import { solutionFeatures } from "../../../data/site/solutionFeatures";
 import CtaSolution from "../../../components/site/CtaSolution/CtaSolution";
 import PageBreadcrumb from "../../../components/site/PageBreadcrumb/PageBreadcrumb";
+import PlatformModulesSection from "../../../components/site/PlatformModuleSection/PlatformModulesSection";
 
 const Solucao = () => {
   return (
@@ -127,6 +128,9 @@ const Solucao = () => {
 
       <section className="px-4 pb-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
+
+          <PlatformModulesSection />
+
           <CtaSolution />
         </div>
       </section>
