@@ -53,13 +53,6 @@ const AgendaSemanal = ({ titulo = "Agenda", eventos, modo = "admin" }: AgendaSem
           <button className="rounded-lg border border-[#ddd3cb] p-2 hover:bg-[#f6f1ec]">
             <ChevronRight className="h-4 w-4" />
           </button>
-
-          {modo === "admin" && (
-            <button className="flex items-center gap-2 rounded-lg bg-[#f58200] px-3 py-2 text-sm font-bold text-white hover:bg-[#df7600]">
-              <Plus className="h-4 w-4" />
-              Novo agendamento
-            </button>
-          )}
         </div>
       </div>
 
