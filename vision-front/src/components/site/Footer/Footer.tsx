@@ -50,7 +50,7 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 <li><Link to="/solucao" className="transition hover:text-brand-orange">Solução</Link></li>
-                <li><Link to="/plataforma-site" className="transition hover:text-brand-orange">Plataforma</Link></li>
+                <li><Link to="/plataforma" className="transition hover:text-brand-orange">Plataforma</Link></li>
               </ul>
             </div>
 

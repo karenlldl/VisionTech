@@ -40,6 +40,8 @@ import NotFound from "./pages/platform/NotFound/NotFound";
 import LayoutSite from "./layouts/LayoutSite/LayoutSite";
 import Sobre from "./pages/site/Sobre/Sobre";
 import FilaExterna from "./pages/platform/FilaExterna/FilaExterna";
+import NotFoundSite from "./pages/site/NotFoundSite/NotFoundSite";
+
 
 function App() {
   return (
@@ -54,6 +56,9 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/time" element={<Time />} />
+
+          {/* 404 DO SITE */}
+          <Route path="*" element={<NotFoundSite />} />
         </Route>
 
         {/* PLATFORM ROUTES */}
@@ -108,13 +113,15 @@ function App() {
           element={<DentistaHistorico />}
         />
 
-        {/* RESET */}
-
         <Route path="/definir-senha" element={<DefinirSenha />} />
 
-        {/* 404 */}
-
-        <Route path="*" element={<NotFound />} />
+        {/* 404 DA PLATAFORMA */}
+        <Route path="/admin/*" element={<NotFound />} />
+        <Route path="/dentista/*" element={<NotFound />} />
+        <Route path="/plataforma/*" element={<NotFound />} />
+        <Route path="/cadastro/*" element={<NotFound />} />
+        <Route path="/login/*" element={<NotFound />} />
+        <Route path="/definir-senha/*" element={<NotFound />} />
 
       </Routes>
     </BrowserRouter>

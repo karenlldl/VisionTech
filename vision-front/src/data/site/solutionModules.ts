@@ -12,13 +12,13 @@ export const solutionModules = [
     icon: LayoutGrid,
     title: "Dashboard administrativo",
     description:
-      "Visão consolidada da operação, com indicadores, fluxos, alertas e prioridades em uma única superfície.",
+      "Visão consolidada da operação, com indicadores, filtros e gráficos para apoiar a coordenação na tomada de decisão.",
     bullets: [
-      "Indicadores da operação",
-      "Visão de pacientes e atendimentos",
-      "Acompanhamento em tempo real",
+      "Filtros por origem, prioridade, status, dentista e faixa etária",
+      "Indicadores de pacientes filtrados, alta prioridade e conclusão",
+      "Gráficos sobre origem, idade, prioridade, funil e carga por dentista",
     ],
-    image: "/images/prints/dashboard-admin.png",
+    image: "/img/dashboard-admin.png",
     imageAlt: "Print do dashboard administrativo da plataforma Vision",
   },
   {
@@ -26,13 +26,13 @@ export const solutionModules = [
     icon: UsersRound,
     title: "Gestão de pacientes",
     description:
-      "Cadastro, histórico, triagem e jornada completa de cada paciente em um perfil unificado.",
+       "Módulo para cadastrar novos pacientes, acompanhar o status de cada caso e organizar a distribuição dos atendimentos entre administradores e dentistas.",
     bullets: [
-      "Cadastro centralizado",
-      "Histórico do paciente",
-      "Triagem e acompanhamento",
+      "Cadastro com programa, data de nascimento, contato, email e observações",
+      "Painel com busca, filtros, status, prioridade e atribuição de dentista",
+      "Área do dentista para visualizar atendimentos, procedimentos e histórico clínico",
     ],
-    image: "/images/prints/gestao-pacientes.png",
+    image: "/img/gestao-pacientes.png",
     imageAlt: "Print da área de gestão de pacientes da plataforma Vision",
   },
   {
@@ -46,7 +46,7 @@ export const solutionModules = [
       "Acompanhamento de consultas",
       "Fluxo visual de disponibilidade",
     ],
-    image: "/images/prints/agenda-inteligente.png",
+    image: "/img/agenda.jpeg",
     imageAlt: "Print da agenda inteligente da plataforma Vision",
   },
   {
@@ -54,13 +54,13 @@ export const solutionModules = [
     icon: Stethoscope,
     title: "Área do profissional",
     description:
-      "Espaço para o profissional consultar encaminhamentos, registrar avaliações e atualizar a evolução do tratamento.",
+      "Centraliza a rotina do dentista, permitindo acompanhar pacientes em atendimento, registrar evoluções e consultar históricos finalizados.",
     bullets: [
-      "Encaminhamentos organizados",
-      "Registro de avaliações",
-      "Evolução do tratamento",
+      "Fila com pacientes encaminhados para atendimento",
+      "Modal para registrar procedimento e evolução do tratamento",
+      "Histórico clínico com atendimentos concluídos",
     ],
-    image: "/images/prints/area-profissional.png",
+    image: "/img/dentista.png",
     imageAlt: "Print da área do profissional da plataforma Vision",
   },
   {
@@ -68,13 +68,13 @@ export const solutionModules = [
     icon: ShieldCheck,
     title: "Gestão de acessos",
     description:
-      "Permissões por perfil para administradores, profissionais e membros da equipe, mantendo a operação mais segura.",
+      "Centraliza o cadastro da equipe e separa os perfis da operação, garantindo que administradores, dentistas e funcionários tenham acessos adequados às suas funções.",
     bullets: [
-      "Perfis de acesso",
-      "Permissões por função",
-      "Controle da operação",
+      "Cadastro separado para dentistas voluntários e funcionários",
+      "Controle de dados profissionais, cargo, especialidade e e-mail",
+      "Convite por e-mail para criação segura da senha de acesso",
     ],
-    image: "/images/prints/gestao-acessos.png",
+    image: "/img/cadastro-funcionarios.png",
     imageAlt: "Print da gestão de acessos da plataforma Vision",
   },
 ];
