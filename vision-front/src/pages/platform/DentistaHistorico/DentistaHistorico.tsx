@@ -23,7 +23,7 @@ const DentistaHistorico = () => {
   const [erro, setErro] = useState("");
   const [nomeLogado, setNomeLogado] = useState(""); 
 
-  const idMedicoLogado = 24;
+const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
 
   const traduzirPrioridade = (gravidade: number): string => {
     if (gravidade >= 4) return "Alta";

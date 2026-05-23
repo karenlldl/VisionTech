@@ -29,7 +29,7 @@ const DentistaAgenda = () => {
   const [erro, setErro] = useState("");
   const [nomeLogado, setNomeLogado] = useState("");
 
-  const idMedicoLogado = 24; 
+const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   
   const extrairDiaSemana = (dataStr: string): string => {
     try {

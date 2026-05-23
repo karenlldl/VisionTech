@@ -143,7 +143,7 @@ const FormCadastro = () => {
         "responsavel"
       ) as HTMLInputElement | null;
 
-      const dadosPaciente = {
+const dadosPaciente = {
         nome: inputNome.value,
         email: inputEmail.value,
         dataNascimento,
@@ -152,6 +152,8 @@ const FormCadastro = () => {
         cidade: inputCidade.value,
         rendaBrutaTotal: Number(inputRenda.value),
         programa: programaSelecionado,
+        status: "Aguardando análise", 
+        escola: "Cadastro Externo",  
         nomeResponsavel:
           programaSelecionado === "dentistas"
             ? inputResponsavel?.value || ""

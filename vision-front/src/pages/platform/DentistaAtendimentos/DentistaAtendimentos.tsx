@@ -26,7 +26,7 @@ const DentistaAtendimentos = () => {
   
   const [pacienteSelecionado, setPacienteSelecionado] = useState<Atendimento | null>(null);
 
-  const idMedicoLogado = 24; 
+const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
 
   const traduzirPrioridade = (gravidade: number): string => {
     if (gravidade >= 4) return "Alta";

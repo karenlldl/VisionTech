@@ -24,7 +24,7 @@ const Dentista = () => {
   
   const [nomeLogado, setNomeLogado] = useState(""); 
 
-  const idMedicoLogado = 24; 
+const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
 
   const traduzirPrioridade = (gravidade: number) => {
     if (gravidade >= 4) return "Alta";
@@ -46,7 +46,6 @@ const Dentista = () => {
       if (!response.ok) throw new Error("Erro ao carregar a fila do banco.");
       const dados: EventoJava[] = await response.json();
       
-      // CAPTURA DINÂMICA: Seta o nome do médico baseado no primeiro registro retornado
       if (dados.length > 0 && dados[0].nomeDentista) {
         setNomeLogado(dados[0].nomeDentista);
       }
