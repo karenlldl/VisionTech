@@ -161,7 +161,7 @@ const dadosPaciente = {
         situacao: inputSituacao.value,
       };
 
-      const response = await fetch("http://localhost:8081/pacientes", {
+      const response = await fetch("https://vision-xs85.onrender.com/pacientes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

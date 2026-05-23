@@ -42,7 +42,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
 
   const carregarFila = async () => {
     try {
-      const response = await fetch(`http://localhost:8081/dentistas/${idMedicoLogado}/agenda`);
+      const response = await fetch(`https://vision-xs85.onrender.com/dentistas/${idMedicoLogado}/agenda`);
       if (!response.ok) throw new Error("Erro ao carregar a fila do banco.");
       const dados: EventoJava[] = await response.json();
       
@@ -95,7 +95,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
     }
 
     try {
-      const response = await fetch(`http://localhost:8081/dentistas/atendimento/${pacienteSelecionado.id}`, {
+      const response = await fetch(`https://vision-xs85.onrender.com/dentistas/atendimento/${pacienteSelecionado.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

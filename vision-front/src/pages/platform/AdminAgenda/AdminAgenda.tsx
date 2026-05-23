@@ -50,7 +50,7 @@ const AdminAgenda = () => {
     try {
       const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
       try {
-        const resAdmin = await fetch(`http://localhost:8081/funcionarios/${idLogado}`);
+        const resAdmin = await fetch(`https://vision-xs85.onrender.com/funcionarios/${idLogado}`);
         if (resAdmin.ok) {
           const adminData = await resAdmin.json();
           setNomeAdminLogado(adminData.nome || "Administrador");
@@ -59,7 +59,7 @@ const AdminAgenda = () => {
         setNomeAdminLogado("Administrador");
       }
 
-      const response = await fetch("http://localhost:8081/pacientes/agenda-geral");
+      const response = await fetch("https://vision-xs85.onrender.com/pacientes/agenda-geral");
       if (!response.ok) throw new Error("Erro ao sincronizar a agenda geral.");
       
       const dadosJava = await response.json();
@@ -108,8 +108,8 @@ const AdminAgenda = () => {
     setModalAberto(true);
     try {
       const [resPac, resDent] = await Promise.all([
-        fetch("http://localhost:8081/pacientes/painel-admin"),
-        fetch("http://localhost:8081/dentistas")
+        fetch("https://vision-xs85.onrender.com/pacientes/painel-admin"),
+        fetch("https://vision-xs85.onrender.com/dentistas")
       ]);
       if (resPac.ok) setListaPacientes(await resPac.json());
       if (resDent.ok) setListaDentistas(await resDent.json());
@@ -139,7 +139,7 @@ const AdminAgenda = () => {
         procedimento: procedimento
       };
 
-      const res = await fetch(`http://localhost:8081/pacientes/${pacienteSelecionado}/novo-agendamento`, {
+      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${pacienteSelecionado}/novo-agendamento`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

@@ -24,7 +24,7 @@ const CadastrarFuncionario = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8081/funcionarios", {
+      const response = await fetch("https://vision-xs85.onrender.com/funcionarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

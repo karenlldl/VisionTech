@@ -43,7 +43,7 @@ const NovoPaciente = () => {
       try {
         const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
         const resAdmin = await fetch(
-          `http://localhost:8081/funcionarios/${idLogado}`
+          `https://vision-xs85.onrender.com/funcionarios/${idLogado}`
         );
 
         if (resAdmin.ok) {
@@ -112,7 +112,7 @@ const NovoPaciente = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8081/pacientes", {
+      const response = await fetch("https://vision-xs85.onrender.com/pacientes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

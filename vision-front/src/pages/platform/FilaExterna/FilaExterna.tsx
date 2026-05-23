@@ -26,7 +26,7 @@ const FilaExterna = () => {
   const carregarFila = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:8081/pacientes");
+      const response = await fetch("https://vision-xs85.onrender.com/pacientes");
       if (!response.ok) throw new Error("Erro ao buscar pacientes.");
       
       const todosPacientes = await response.json();
@@ -50,7 +50,7 @@ const FilaExterna = () => {
 
 const aprovarPaciente = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:8081/pacientes/${id}/aprovar`, {
+      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${id}/aprovar`, {
         method: "PUT"
       });
 
@@ -71,7 +71,7 @@ const aprovarPaciente = async (id: number) => {
 const confirmarRecusa = async () => {
     if (!pacienteParaRecusar) return;
     try {
-      const res = await fetch(`http://localhost:8081/pacientes/${pacienteParaRecusar}`, {
+      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${pacienteParaRecusar}`, {
         method: "DELETE"
       });
 

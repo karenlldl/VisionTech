@@ -47,7 +47,7 @@ const Admin = () => {
 
       const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
       try {
-        const resAdmin = await fetch(`http://localhost:8081/funcionarios/${idLogado}`);
+        const resAdmin = await fetch(`https://vision-xs85.onrender.com/funcionarios/${idLogado}`);
         if (resAdmin.ok) {
           const adminData = await resAdmin.json();
           setNomeAdminLogado(adminData.nome || "Administrador");
@@ -58,7 +58,7 @@ const Admin = () => {
         setNomeAdminLogado("Administrador");
       }
 
-      const resPacientes = await fetch("http://localhost:8081/pacientes/painel-admin");
+      const resPacientes = await fetch("https://vision-xs85.onrender.com/pacientes/painel-admin");
       let dadosPacientes: any[] = []; 
       
       if (resPacientes.ok) {
@@ -82,7 +82,7 @@ return {
         });
       }
 
-      const resDentistas = await fetch("http://localhost:8081/dentistas");
+      const resDentistas = await fetch("https://vision-xs85.onrender.com/dentistas");
       let dadosDentistas: any[] = []; 
       if (resDentistas.ok) {
         const jsonDentistas = await resDentistas.json();
@@ -139,13 +139,13 @@ return {
 
     setProcessando(true);
     try {
-      const resAtribuir = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/atribuir-medico/${dentistaSelecionado}`, { 
+      const resAtribuir = await fetch(`https://vision-xs85.onrender.com/pacientes/${modalAgenda.idAtendimento}/atribuir-medico/${dentistaSelecionado}`, { 
         method: "PUT" 
       });
       if (!resAtribuir.ok) throw new Error("Erro ao atualizar o vínculo no banco.");
 
       const dataHoraFormatada = `${dataSelecionada} ${horarioSelecionado}`;
-      const resAgendar = await fetch(`http://localhost:8081/pacientes/${modalAgenda.idAtendimento}/marcar-consulta`, {
+      const resAgendar = await fetch(`https://vision-xs85.onrender.com/pacientes/${modalAgenda.idAtendimento}/marcar-consulta`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ dataHora: dataHoraFormatada })

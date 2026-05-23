@@ -37,7 +37,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   useEffect(() => {
     const buscarFilaReal = async () => {
       try {
-        const response = await fetch(`http://localhost:8081/dentistas/${idMedicoLogado}/agenda`);
+        const response = await fetch(`https://vision-xs85.onrender.com/dentistas/${idMedicoLogado}/agenda`);
         if (!response.ok) throw new Error("Não foi possível carregar os atendimentos ativos.");
         
         const dadosJava = await response.json();

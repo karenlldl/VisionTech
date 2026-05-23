@@ -46,7 +46,7 @@ async function handleSubmit(event: React.FormEvent) {
     setCarregando(true);
 
     try {
-      const response = await fetch("http://localhost:8081/auth/create-password", {
+      const response = await fetch("https://vision-xs85.onrender.com/auth/create-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

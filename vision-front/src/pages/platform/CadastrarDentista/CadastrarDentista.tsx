@@ -24,7 +24,7 @@ const CadastrarDentista = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8081/dentistas", {
+      const response = await fetch("https://vision-xs85.onrender.com/dentistas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
