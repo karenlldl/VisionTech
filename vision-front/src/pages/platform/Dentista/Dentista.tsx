@@ -25,6 +25,7 @@ const Dentista = () => {
   const [nomeLogado, setNomeLogado] = useState(""); 
 
 const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+const API_URL = import.meta.env.VITE_API_URL;
 
   const traduzirPrioridade = (gravidade: number) => {
     if (gravidade >= 4) return "Alta";
@@ -42,7 +43,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
 
   const carregarFila = async () => {
     try {
-      const response = await fetch(`https://vision-xs85.onrender.com/dentistas/${idMedicoLogado}/agenda`);
+      const response = await fetch(`${API_URL}/dentistas/${idMedicoLogado}/agenda`);
       if (!response.ok) throw new Error("Erro ao carregar a fila do banco.");
       const dados: EventoJava[] = await response.json();
       
@@ -95,7 +96,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
     }
 
     try {
-      const response = await fetch(`https://vision-xs85.onrender.com/dentistas/atendimento/${pacienteSelecionado.id}`, {
+      const response = await fetch(`${API_URL}/dentistas/atendimento/${pacienteSelecionado.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

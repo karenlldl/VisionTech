@@ -21,7 +21,8 @@ const LoginPlataforma = () => {
     }
 
     try {
-      const response = await fetch("https://vision-xs85.onrender.com/auth/login", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

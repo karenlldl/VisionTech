@@ -10,8 +10,9 @@ const Equipe = () => {
   useEffect(() => {
     const buscarAdmin = async () => {
       try {
+        const API_URL = import.meta.env.VITE_API_URL;
         const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
-        const resAdmin = await fetch(`https://vision-xs85.onrender.com/funcionarios/${idLogado}`);
+        const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`);
         if (resAdmin.ok) {
           const adminData = await resAdmin.json();
           setNomeAdminLogado(adminData.nome || "Administrador");

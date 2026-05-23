@@ -34,7 +34,8 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   useEffect(() => {
     const buscarHistoricoReal = async () => {
       try {
-        const response = await fetch(`https://vision-xs85.onrender.com/dentistas/${idMedicoLogado}/agenda`);
+          const API_URL = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${API_URL}/dentistas/${idMedicoLogado}/agenda`);
         if (!response.ok) throw new Error("Não foi possível carregar o histórico.");
         
         const dadosJava = await response.json();

@@ -24,9 +24,10 @@ const FilaExterna = () => {
   const [pacienteParaRecusar, setPacienteParaRecusar] = useState<number | null>(null);
 
   const carregarFila = async () => {
+    const API_URL = import.meta.env.VITE_API_URL;
+    const response = await fetch(`${API_URL}/pacientes`);
     setLoading(true);
     try {
-      const response = await fetch("https://vision-xs85.onrender.com/pacientes");
       if (!response.ok) throw new Error("Erro ao buscar pacientes.");
       
       const todosPacientes = await response.json();
@@ -50,7 +51,8 @@ const FilaExterna = () => {
 
 const aprovarPaciente = async (id: number) => {
     try {
-      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${id}/aprovar`, {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/pacientes/${id}/aprovar`, {
         method: "PUT"
       });
 
@@ -71,7 +73,8 @@ const aprovarPaciente = async (id: number) => {
 const confirmarRecusa = async () => {
     if (!pacienteParaRecusar) return;
     try {
-      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${pacienteParaRecusar}`, {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const res = await fetch(`${API_URL}/pacientes/${pacienteParaRecusar}`, {
         method: "DELETE"
       });
 

@@ -61,7 +61,8 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   useEffect(() => {
     const carregarAgendaBanco = async () => {
       try {
-        const response = await fetch(`https://vision-xs85.onrender.com/dentistas/${idMedicoLogado}/agenda`);
+        const API_URL = import.meta.env.VITE_API_URL;
+        const response = await fetch(`${API_URL}/dentistas/${idMedicoLogado}/agenda`);
         
         if (!response.ok) {
           throw new Error("Não foi possível sincronizar com o banco de dados.");

@@ -24,7 +24,8 @@ const CadastrarFuncionario = () => {
     };
 
     try {
-      const response = await fetch("https://vision-xs85.onrender.com/funcionarios", {
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await fetch(`${API_URL}/funcionarios`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

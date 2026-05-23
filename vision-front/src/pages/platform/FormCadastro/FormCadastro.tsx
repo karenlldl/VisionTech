@@ -129,6 +129,7 @@ const FormCadastro = () => {
     }
 
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
       const inputNome = document.getElementById("nome") as HTMLInputElement;
       const inputEmail = document.getElementById("email") as HTMLInputElement;
       const inputContato = document.getElementById(
@@ -161,7 +162,7 @@ const dadosPaciente = {
         situacao: inputSituacao.value,
       };
 
-      const response = await fetch("https://vision-xs85.onrender.com/pacientes", {
+      const response = await fetch(`${API_URL}/pacientes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

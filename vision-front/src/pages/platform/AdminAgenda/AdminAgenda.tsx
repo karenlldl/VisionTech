@@ -48,9 +48,10 @@ const AdminAgenda = () => {
   const carregarAgendaGeral = useCallback(async () => {
     setLoading(true);
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
       const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
       try {
-        const resAdmin = await fetch(`https://vision-xs85.onrender.com/funcionarios/${idLogado}`);
+        const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`);
         if (resAdmin.ok) {
           const adminData = await resAdmin.json();
           setNomeAdminLogado(adminData.nome || "Administrador");
@@ -58,8 +59,7 @@ const AdminAgenda = () => {
       } catch {
         setNomeAdminLogado("Administrador");
       }
-
-      const response = await fetch("https://vision-xs85.onrender.com/pacientes/agenda-geral");
+      const response = await fetch(`${API_URL}/pacientes/agenda-geral`);
       if (!response.ok) throw new Error("Erro ao sincronizar a agenda geral.");
       
       const dadosJava = await response.json();
@@ -107,9 +107,10 @@ const AdminAgenda = () => {
   const abrirModalNovoAgendamento = async () => {
     setModalAberto(true);
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
       const [resPac, resDent] = await Promise.all([
-        fetch("https://vision-xs85.onrender.com/pacientes/painel-admin"),
-        fetch("https://vision-xs85.onrender.com/dentistas")
+        fetch(`${API_URL}/pacientes/painel-admin`),
+        fetch(`${API_URL}om/dentistas`)
       ]);
       if (resPac.ok) setListaPacientes(await resPac.json());
       if (resDent.ok) setListaDentistas(await resDent.json());
@@ -133,13 +134,14 @@ const AdminAgenda = () => {
     }
     setProcessando(true);
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
       const payload = {
         idMedico: parseInt(dentistaSelecionado),
         dataHora: `${dataSelecionada} ${horarioSelecionado}`,
         procedimento: procedimento
       };
 
-      const res = await fetch(`https://vision-xs85.onrender.com/pacientes/${pacienteSelecionado}/novo-agendamento`, {
+      const res = await fetch(`${API_URL}/pacientes/${pacienteSelecionado}/novo-agendamento`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)

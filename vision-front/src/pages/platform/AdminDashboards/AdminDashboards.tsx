@@ -64,9 +64,10 @@ const AdminDashboards = () => {
   useEffect(() => {
     const buscarDados = async () => {
       try {
+        const API_URL = import.meta.env.VITE_API_URL;
         const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
         try {
-          const resAdmin = await fetch(`https://vision-xs85.onrender.com/funcionarios/${idLogado}`);
+          const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`);
           if (resAdmin.ok) {
             const adminData = await resAdmin.json();
             setNomeAdminLogado(adminData.nome || "Administrador");
@@ -76,8 +77,8 @@ const AdminDashboards = () => {
         }
 
         const [resPainel, resGeral] = await Promise.all([
-          fetch("https://vision-xs85.onrender.com/pacientes/painel-admin"),
-          fetch("https://vision-xs85.onrender.com/pacientes")
+          fetch(`${API_URL}/pacientes/painel-admin]`),
+          fetch(`${API_URL}/pacientes`)
         ]);
 
         if (resPainel.ok && resGeral.ok) {
