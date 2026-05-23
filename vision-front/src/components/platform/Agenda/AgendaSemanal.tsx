@@ -1,4 +1,4 @@
-import { CalendarDays, ChevronLeft, ChevronRight, Plus, Search } from "lucide-react";
+import { CalendarDays, ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 type EventoAgenda = {
   id: number;
@@ -27,7 +27,7 @@ const statusColor = {
   "Sem dentista": "bg-gray-100 border-gray-300 text-gray-800",
 };
 
-const AgendaSemanal = ({ titulo = "Agenda", eventos, modo = "admin" }: AgendaSemanalProps) => {
+const AgendaSemanal = ({ titulo = "Agenda", eventos }: AgendaSemanalProps) => {
   return (
     <section className="rounded-2xl border border-[#e7dfd8] bg-white p-5 shadow-sm">
       <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
