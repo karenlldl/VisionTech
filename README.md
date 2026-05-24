@@ -8,8 +8,8 @@
 ---
 ## 👥 Autores e Créditos 
 Projeto desenvolvido por estudantes da FIAP:<br>
-Karen Cardoso — RM: 566870
-Henrique Bagueixe — RM: 568292
+Karen Cardoso — RM: 566870<br>
+Henrique Bagueixe — RM: 568292<br>
 Denise Santos — RM: 567559<br>
 Instituição: FIAP — Faculdade de Informática e Administração Paulista
 Projeto desenvolvido no contexto: Challenge FIAP + Turma do Bem
