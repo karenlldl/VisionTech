@@ -31,9 +31,11 @@ const DentistaAgenda = () => {
 
 const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   
-  const extrairDiaSemana = (dataStr: string): string => {
+const extrairDiaSemana = (dataStr: string | null): string => {
+    if (!dataStr) return "SEG";
     try {
       const [dataParte] = dataStr.split(" ");
+      if (!dataParte) return "SEG";
       const [dia, mes, ano] = dataParte.split("/").map(Number);
       const dataObjeto = new Date(ano, mes - 1, dia);
       
@@ -74,8 +76,8 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
           setNomeLogado(dadosJava[0].nomeDentista);
         }
 
-        const dadosFormatados: EventoFront[] = dadosJava.map((item) => {
-          const [_, horario] = item.dataHora.split(" "); 
+      const dadosFormatados: EventoFront[] = dadosJava.map((item) => {
+          const horario = item.dataHora ? item.dataHora.split(" ")[1] : "Sem Horário"; 
 
           return {
             id: item.idAtendimento,
