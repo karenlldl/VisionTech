@@ -6,11 +6,11 @@
 ### Site institucional, com apresentação da solução, proposta de valor, páginas informativas e contato;
 ### Plataforma interna, com áreas para administradores e dentistas, incluindo cadastro de pacientes, fila externa, dashboards, agenda, gestão de equipe e acompanhamento de atendimentos.
 ---
-## 👥 Autores e Créditos
-Projeto desenvolvido por estudantes da FIAP:
+## 👥 Autores e Créditos 
+Projeto desenvolvido por estudantes da FIAP:<br>
 Karen Cardoso — RM: 566870
 Henrique Bagueixe — RM: 568292
-Denise Santos — RM: 567559
+Denise Santos — RM: 567559<br>
 Instituição: FIAP — Faculdade de Informática e Administração Paulista
 Projeto desenvolvido no contexto: Challenge FIAP + Turma do Bem
 ---
