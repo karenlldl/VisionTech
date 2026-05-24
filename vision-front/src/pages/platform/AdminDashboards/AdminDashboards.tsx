@@ -62,7 +62,7 @@ const AdminDashboards = () => {
   useEffect(() => {
     const buscarDados = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
+        const API_URL = import.meta.env.VITE_API_URL || "https://vision-xs85.onrender.com";
         const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
         
         const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`).catch(() => null);

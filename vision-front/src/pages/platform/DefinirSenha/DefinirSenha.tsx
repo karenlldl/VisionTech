@@ -46,7 +46,7 @@ async function handleSubmit(event: React.FormEvent) {
     setCarregando(true);
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
+      const API_URL = import.meta.env.VITE_API_URL || "https://vision-xs85.onrender.com";
       const response = await fetch(`${API_URL}/auth/create-password`, {
         method: "POST",
         headers: {
