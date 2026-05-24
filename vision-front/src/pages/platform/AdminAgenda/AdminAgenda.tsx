@@ -104,16 +104,24 @@ const AdminAgenda = () => {
     carregarAgendaGeral();
   }, [carregarAgendaGeral]);
 
-  const abrirModalNovoAgendamento = async () => {
+const abrirModalNovoAgendamento = async () => {
     setModalAberto(true);
     try {
       const API_URL = import.meta.env.VITE_API_URL;
       const [resPac, resDent] = await Promise.all([
-        fetch(`${API_URL}/pacientes/painel-admin`),
-        fetch(`${API_URL}om/dentistas`)
+        fetch(`${API_URL}/pacientes/painel-admin`).catch(() => null),
+        fetch(`${API_URL}/dentistas`).catch(() => null) // URL corrigida, sem o 'om'
       ]);
-      if (resPac.ok) setListaPacientes(await resPac.json());
-      if (resDent.ok) setListaDentistas(await resDent.json());
+
+      if (resPac && resPac.ok) {
+        const jsonPac = await resPac.json();
+        if (Array.isArray(jsonPac)) setListaPacientes(jsonPac);
+      }
+      
+      if (resDent && resDent.ok) {
+        const jsonDent = await resDent.json();
+        if (Array.isArray(jsonDent)) setListaDentistas(jsonDent);
+      }
     } catch(e) {
       console.error("Erro ao carregar listas de apoio.", e);
     }
