@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
 import PacienteCard from "../../../components/platform/Agenda/PacienteCard";
 
-
 interface EventoJava {
   idAtendimento: number;
   dataHora: string;
@@ -24,8 +23,8 @@ const Dentista = () => {
   
   const [nomeLogado, setNomeLogado] = useState(""); 
 
-const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
-const API_URL = import.meta.env.VITE_API_URL;
+  const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+  const API_URL = import.meta.env.VITE_API_URL || "https://vision-xs85.onrender.com";
 
   const traduzirPrioridade = (gravidade: number) => {
     if (gravidade >= 4) return "Alta";
@@ -33,12 +32,12 @@ const API_URL = import.meta.env.VITE_API_URL;
     return "Baixa";
   };
 
-    const traduzirStatus = (status: string): string => {
+  const traduzirStatus = (status: string): string => {
     if (!status) return "Aguardando";
-    const s = status.toUpperCase();
-    if (s === "AGENDADO") return "Aguardando";
-    if (s === "EM_ATENDIMENTO") return "Em atendimento";
-    if (s === "FINALIZADO") return "Concluído";
+    const s = String(status).toUpperCase();
+    if (s.includes("AGENDAD") || s.includes("AGUARD")) return "Aguardando";
+    if (s.includes("EM_ATENDIMENTO") || s.includes("ANDAMENTO")) return "Em atendimento";
+    if (s.includes("FINALIZAD") || s.includes("CONCLUID")) return "Concluído";
     return "Aguardando";
   };
 
@@ -53,7 +52,11 @@ const API_URL = import.meta.env.VITE_API_URL;
       }
       
       const mapeados = dados
-        .filter((item) => item.status !== "FINALIZADO") 
+        .filter((item) => {
+          if (!item.status) return true;
+          const s = String(item.status).toUpperCase();
+          return !s.includes("FINALIZAD") && !s.includes("CONCLUID");
+        }) 
         .map((item) => ({
           id: item.idAtendimento,
           nome: item.nomePaciente,
@@ -63,7 +66,7 @@ const API_URL = import.meta.env.VITE_API_URL;
           prioridade: traduzirPrioridade(item.gravidade),
           dentista: item.nomeDentista || "Médico Desconhecido", 
           data: item.dataHora || "Aguardando agendamento"
-                }));
+        }));
 
       setPacientes(mapeados);
     } catch (err: any) {

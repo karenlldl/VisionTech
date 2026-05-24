@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Stethoscope, CalendarDays, Globe, Building2, MessageSquare, X } from "lucide-react";
 import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
 
-
 type Atendimento = {
   id: string;
   nome: string;
@@ -26,7 +25,8 @@ const DentistaAtendimentos = () => {
   
   const [pacienteSelecionado, setPacienteSelecionado] = useState<Atendimento | null>(null);
 
-const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+  const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+  const API_URL = import.meta.env.VITE_API_URL || "https://vision-xs85.onrender.com";
 
   const traduzirPrioridade = (gravidade: number): string => {
     if (gravidade >= 4) return "Alta";
@@ -37,7 +37,6 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
   useEffect(() => {
     const buscarFilaReal = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
         const response = await fetch(`${API_URL}/dentistas/${idMedicoLogado}/agenda`);
         if (!response.ok) throw new Error("Não foi possível carregar os atendimentos ativos.");
         
@@ -48,7 +47,11 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
         }
 
       const formatados: Atendimento[] = dadosJava
-          .filter((item: any) => item.status === "EM_ATENDIMENTO")
+          .filter((item: any) => {
+            if (!item.status) return false;
+            const s = String(item.status).toUpperCase();
+            return s.includes("ATENDIMENTO") || s.includes("ANDAMENTO");
+          })
           .map((item: any) => ({
             id: String(item.idAtendimento),
             nome: item.nomePaciente,
@@ -57,7 +60,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
             origemIcone: "building",
             status: "Em atendimento",
             prioridade: traduzirPrioridade(item.gravidade),
-            dataAgenda: item.dataHora,
+            dataAgenda: item.dataHora || "Sem data definida",
             descricaoAtendimento: item.procedimento,
             andamento: "Em andamento",
             dataRegistro: item.dataHora ? item.dataHora.split(" ")[0] : "Sem registro",

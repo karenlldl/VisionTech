@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import NavPlataformaInterna from "../../../components/platform/NavPlataformaInterna/NavPlataformaInterna";
 import AgendaSemanal from "../../../components/platform/Agenda/AgendaSemanal";
 
-
 interface EventoJava {
   idAtendimento: number;
   dataHora: string;     
@@ -29,9 +28,10 @@ const DentistaAgenda = () => {
   const [erro, setErro] = useState("");
   const [nomeLogado, setNomeLogado] = useState("");
 
-const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+  const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
+  const API_URL = import.meta.env.VITE_API_URL || "https://vision-xs85.onrender.com";
   
-const extrairDiaSemana = (dataStr: string | null): string => {
+  const extrairDiaSemana = (dataStr: string | null): string => {
     if (!dataStr) return "SEG";
     try {
       const [dataParte] = dataStr.split(" ");
@@ -53,17 +53,17 @@ const extrairDiaSemana = (dataStr: string | null): string => {
   };
 
   const traduzirStatus = (status: string): string => {
-    const s = status.toUpperCase();
-    if (s === "AGENDADO") return "Aguardando";
-    if (s === "EM_ATENDIMENTO") return "Em atendimento";
-    if (s === "FINALIZADO") return "Concluído";
+    if (!status) return "Aguardando";
+    const s = String(status).toUpperCase();
+    if (s.includes("AGENDAD") || s.includes("AGUARD")) return "Aguardando";
+    if (s.includes("EM_ATENDIMENTO") || s.includes("ANDAMENTO")) return "Em atendimento";
+    if (s.includes("FINALIZAD") || s.includes("CONCLUID")) return "Concluído";
     return "Aguardando";
   };
 
   useEffect(() => {
     const carregarAgendaBanco = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
         const response = await fetch(`${API_URL}/dentistas/${idMedicoLogado}/agenda`);
         
         if (!response.ok) {
