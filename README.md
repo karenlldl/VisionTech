@@ -1,7 +1,7 @@
 # Vision Technology
 ## 📌 Descrição do Projeto
-## A Vision Technology é uma plataforma web desenvolvida para apoiar organizações de saúde, ONGs, institutos e projetos sociais na gestão de pacientes, triagens, atendimentos, equipes e indicadores operacionais.
-O projeto nasceu no contexto do Challenge da FIAP, a partir de uma oportunidade real identificada em parceria com a Turma do Bem. A proposta da Vision é centralizar informações que normalmente ficam espalhadas em planilhas, mensagens, formulários e controles manuais, transformando a operação de cuidado em um fluxo mais organizado, rastreável e eficiente.
+### A Vision Technology é uma plataforma web desenvolvida para apoiar organizações de saúde, ONGs, institutos e projetos sociais na gestão de pacientes, triagens, atendimentos, equipes e indicadores operacionais.
+### O projeto nasceu no contexto do Challenge da FIAP, a partir de uma oportunidade real identificada em parceria com a Turma do Bem. A proposta da Vision é centralizar informações que normalmente ficam espalhadas em planilhas, mensagens, formulários e controles manuais, transformando a operação de cuidado em um fluxo mais organizado, rastreável e eficiente.
 A solução conta com duas frentes principais:
 Site institucional, com apresentação da solução, proposta de valor, páginas informativas e contato;
 Plataforma interna, com áreas para administradores e dentistas, incluindo cadastro de pacientes, fila externa, dashboards, agenda, gestão de equipe e acompanhamento de atendimentos.
