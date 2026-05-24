@@ -50,31 +50,31 @@ npm install
 ```
 ---
 ## 🧩 Funcionalidades Principais
-Site institucional
-Página inicial com apresentação da Vision;
-Página sobre o projeto, FIAP e Turma do Bem;
-Página de solução com módulos da plataforma;
-Página de FAQ;
-Página de contato;
-Página do time;
-Página 404 personalizada para o site.
-Plataforma interna
-Login da plataforma;
-Home da plataforma;
-Cadastro externo para avaliação;
-Fila de pacientes externos;
-Aprovação ou recusa de pacientes externos;
-Painel administrativo;
-Cadastro de novo paciente;
-Dashboard com indicadores;
-Agenda;
-Gestão de equipe;
-Cadastro de dentistas e funcionários;
-Área do dentista;
-Fila de atendimento;
-Registro de atendimentos;
-Histórico de atendimentos;
-Página 404 personalizada para a plataforma.
+Site institucional<br>
+Página inicial com apresentação da Vision;<br>
+Página sobre o projeto, FIAP e Turma do Bem;<br>
+Página de solução com módulos da plataforma;<br>
+Página de FAQ;<br>
+Página de contato;<br>
+Página do time;<br>
+Página 404 personalizada para o site.<br>
+Plataforma interna<br>
+Login da plataforma;<br>
+Home da plataforma;<br>
+Cadastro externo para avaliação;<br>
+Fila de pacientes externos;<br>
+Aprovação ou recusa de pacientes externos;<br>
+Painel administrativo;<br>
+Cadastro de novo paciente;<br>
+Dashboard com indicadores;<br>
+Agenda;<br>
+Gestão de equipe;<br>
+Cadastro de dentistas e funcionários;<br>
+Área do dentista;<br>
+Fila de atendimento;<br>
+Registro de atendimentos;<br>
+Histórico de atendimentos;<br>
+Página 404 personalizada para a plataforma.<br>
 ---
 ## 📁 Estrutura de Pastas
 A estrutura do projeto foi organizada separando os arquivos por domínio, facilitando a manutenção e evolução da aplicação.
@@ -161,17 +161,17 @@ Tipografia moderna;
 Elementos visuais inspirados em plataformas SaaS e healthtechs.
 Ícones
 Os ícones utilizados no projeto são da biblioteca Lucide React, incluindo ícones para:
-Pacientes;
-Agenda;
-Dashboards;
-Equipe;
-Formulários;
-Login;
-Atendimento;
-Histórico;
-Contato;
-Navegação.
-Imagens e prints
+Pacientes;<br>
+Agenda;<br>
+Dashboards;<br>
+Equipe;<br>
+Formulários;<br>
+Login;<br>
+Atendimento;<br>
+Histórico;<br>
+Contato;<br>
+Navegação.<br>
+Imagens e prints<br>
 As imagens e prints utilizados no projeto ficam armazenados principalmente na pasta:
 ```txt
 public/img/
