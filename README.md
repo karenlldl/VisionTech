@@ -88,17 +88,14 @@ src/
 │   │   ├── NavPlataformaInterna/
 │   │   └── outros componentes da plataforma
 │   │
-│   ├── site/
-│   │   ├── Navbar/
-│   │   ├── Footer/
-│   │   ├── FeatureCard/
-│   │   ├── PlatformModuleCard/
-│   │   ├── PlatformModulesSection/
-│   │   └── outros componentes do site
-│   │
-│   └── shared/
-│       ├── ScrollToTop/
-│       └── ui/
+│   └── site/
+│      ├── Navbar/
+│      ├── Footer/
+│      ├── FeatureCard/
+│      ├── PlatformModuleCard/
+│      ├── PlatformModulesSection/
+│      └── outros componentes do site
+│   
 │
 ├── data/
 │   ├── platform/
@@ -109,6 +106,7 @@ src/
 │       ├── homeFeatures.ts
 │       ├── solutionModules.ts
 │       └── teamMembers.ts
+│       └── outros data.ts do site
 │
 ├── layouts/
 │   └── LayoutSite/
@@ -154,7 +152,6 @@ src/
 ## 🖼️ Imagens e Ícones Relacionados ao Projeto
 O projeto utiliza imagens, logotipos, prints da plataforma e ícones para reforçar a identidade visual da Vision.
 Identidade visual
-Logo Vision Technology;
 Favicon personalizado;
 Paleta visual com laranja, preto, branco e tons neutros;
 Tipografia moderna;
@@ -214,9 +211,18 @@ Vídeo de apresentação
 ```txt
 Em breve
 ```
+Link da Solução
 ```txt
 https://vision-tech-platform.vercel.app/
 ```
+## Usuários para login na plataforma:<br/>
+Admin<br/>
+E-mail: dentista@vision.com<br/>
+Senha: 123456<br/>
+<br/>
+Dentista<br/>
+E-mail: vision@vision.com<br/>
+Senha: 123456<br/>
 ---
 ## 📬 Contato
 Para dúvidas, sugestões ou informações sobre o projeto:
