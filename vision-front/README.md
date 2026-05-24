@@ -88,27 +88,26 @@ src/
 │   │   ├── NavPlataformaInterna/
 │   │   └── outros componentes da plataforma
 │   │
-│   ├── site/
-│   │   ├── Navbar/
-│   │   ├── Footer/
-│   │   ├── FeatureCard/
-│   │   ├── PlatformModuleCard/
-│   │   ├── PlatformModulesSection/
-│   │   └── outros componentes do site
-│   │
-│   └── shared/
-│       ├── ScrollToTop/
-│       └── ui/
+│   └── site/
+│      ├── Navbar/
+│      ├── Footer/
+│      ├── FeatureCard/
+│      ├── PlatformModuleCard/
+│      ├── PlatformModulesSection/
+│      └── outros componentes do site
+│   
 │
 ├── data/
 │   ├── platform/
 │   │   └── navLinks.ts
+│   │   └── pacientes.ts
 │   │
 │   └── site/
 │       ├── faq.ts
 │       ├── homeFeatures.ts
 │       ├── solutionModules.ts
-│       └── teamMembers.ts
+│       └── team.ts
+│       └── outros .ts do site
 │
 ├── layouts/
 │   └── LayoutSite/
