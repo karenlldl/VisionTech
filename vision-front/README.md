@@ -6,6 +6,14 @@ A solução conta com duas frentes principais:
 Site institucional, com apresentação da solução, proposta de valor, páginas informativas e contato;
 Plataforma interna, com áreas para administradores e dentistas, incluindo cadastro de pacientes, fila externa, dashboards, agenda, gestão de equipe e acompanhamento de atendimentos.
 ---
+## 👥 Autores e Créditos
+Projeto desenvolvido por estudantes da FIAP:
+Karen Cardoso — RM: 566870
+Henrique Bagueixe — RM: 568292
+Denise Santos — RM: 567559
+Instituição: FIAP — Faculdade de Informática e Administração Paulista
+Projeto desenvolvido no contexto: Challenge FIAP + Turma do Bem
+---
 ## 🚀 Tecnologias Utilizadas
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
 React
@@ -215,16 +223,6 @@ Projeto hospedado na Vercel
 ```txt
 https://vision-tech-platform.vercel.app/
 ```
----
-## 👥 Autores e Créditos
-Projeto desenvolvido por estudantes da FIAP:
-Karen Cardoso — RM: 566870
-Henrique Bagueixe — RM: 568292
-Denise Santos — RM: 567559
-Instituição
-FIAP — Faculdade de Informática e Administração Paulista
-Projeto desenvolvido no contexto
-Challenge FIAP + Turma do Bem
 ---
 ## 📬 Contato
 Para dúvidas, sugestões ou informações sobre o projeto:
