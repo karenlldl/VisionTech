@@ -221,6 +221,14 @@ Projeto hospedado na Vercel
 ```txt
 https://vision-tech-platform.vercel.app/
 ```
+## Usuários para login na plataforma:<br/>
+Admin<br/>
+E-mail: dentista@vision.com<br/>
+Senha: 123456<br/>
+<br/>
+Dentista<br/>
+E-mail: vision@vision.com<br/>
+Senha: 123456<br/>
 ---
 ## 📬 Contato
 Para dúvidas, sugestões ou informações sobre o projeto:
