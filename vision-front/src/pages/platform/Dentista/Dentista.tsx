@@ -33,7 +33,8 @@ const API_URL = import.meta.env.VITE_API_URL;
     return "Baixa";
   };
 
-  const traduzirStatus = (status: string): string => {
+    const traduzirStatus = (status: string): string => {
+    if (!status) return "Aguardando";
     const s = status.toUpperCase();
     if (s === "AGENDADO") return "Aguardando";
     if (s === "EM_ATENDIMENTO") return "Em atendimento";
@@ -61,8 +62,8 @@ const API_URL = import.meta.env.VITE_API_URL;
           status: traduzirStatus(item.status),
           prioridade: traduzirPrioridade(item.gravidade),
           dentista: item.nomeDentista || "Médico Desconhecido", 
-          data: item.dataHora
-        }));
+          data: item.dataHora || "Aguardando agendamento"
+                }));
 
       setPacientes(mapeados);
     } catch (err: any) {

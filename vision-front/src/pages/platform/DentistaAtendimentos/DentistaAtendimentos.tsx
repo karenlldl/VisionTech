@@ -47,7 +47,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
           setNomeLogado(dadosJava[0].nomeDentista);
         }
 
-        const formatados: Atendimento[] = dadosJava
+      const formatados: Atendimento[] = dadosJava
           .filter((item: any) => item.status === "EM_ATENDIMENTO")
           .map((item: any) => ({
             id: String(item.idAtendimento),
@@ -60,7 +60,7 @@ const idMedicoLogado = localStorage.getItem("idUsuarioLogado") || "1";
             dataAgenda: item.dataHora,
             descricaoAtendimento: item.procedimento,
             andamento: "Em andamento",
-            dataRegistro: item.dataHora.split(" ")[0],
+            dataRegistro: item.dataHora ? item.dataHora.split(" ")[0] : "Sem registro",
             observacao: item.observacao || "Nenhuma observação clínica anterior registrada."
           }));
 
