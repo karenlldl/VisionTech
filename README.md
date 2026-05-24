@@ -88,17 +88,14 @@ src/
 │   │   ├── NavPlataformaInterna/
 │   │   └── outros componentes da plataforma
 │   │
-│   ├── site/
-│   │   ├── Navbar/
-│   │   ├── Footer/
-│   │   ├── FeatureCard/
-│   │   ├── PlatformModuleCard/
-│   │   ├── PlatformModulesSection/
-│   │   └── outros componentes do site
-│   │
-│   └── shared/
-│       ├── ScrollToTop/
-│       └── ui/
+│   └── site/
+│      ├── Navbar/
+│      ├── Footer/
+│      ├── FeatureCard/
+│      ├── PlatformModuleCard/
+│      ├── PlatformModulesSection/
+│      └── outros componentes do site
+│   
 │
 ├── data/
 │   ├── platform/
@@ -109,6 +106,7 @@ src/
 │       ├── homeFeatures.ts
 │       ├── solutionModules.ts
 │       └── teamMembers.ts
+│       └── outros data.ts do site
 │
 ├── layouts/
 │   └── LayoutSite/
@@ -154,8 +152,10 @@ src/
 ## 🖼️ Imagens e Ícones Relacionados ao Projeto
 O projeto utiliza imagens, logotipos, prints da plataforma e ícones para reforçar a identidade visual da Vision.
 Identidade visual
-Logo Vision Technology;
+![Logo Vision](./public/img/logo-laranja.png)
+![Logo Vision](./public/img/logo_vision.png)
 Favicon personalizado;
+![Fav Icon](./public/img/favicon.png)
 Paleta visual com laranja, preto, branco e tons neutros;
 Tipografia moderna;
 Elementos visuais inspirados em plataformas SaaS e healthtechs.
