@@ -172,11 +172,7 @@ Histórico;
 Contato;
 Navegação.
 Imagens e prints
-As imagens e prints utilizados no projeto ficam armazenados principalmente nas pastas:
-```txt
-public/images/
-```
-e:
+As imagens e prints utilizados no projeto ficam armazenados principalmente na pasta:
 ```txt
 public/img/
 ```
