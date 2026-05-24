@@ -154,7 +154,10 @@ src/
 O projeto utiliza imagens, logotipos, prints da plataforma e ícones para reforçar a identidade visual da Vision.
 Identidade visual
 Logo Vision Technology;
+![Logo Vision](./public/img/logo-laranja.png)
+![Logo Vision](./public/img/logo_vision.png)
 Favicon personalizado;
+![Fav Icon](./public/img/favicon.png)
 Paleta visual com laranja, preto, branco e tons neutros;
 Tipografia moderna;
 Elementos visuais inspirados em plataformas SaaS e healthtechs.
@@ -172,10 +175,6 @@ Contato;
 Navegação.
 Imagens e prints
 As imagens e prints utilizados no projeto ficam armazenados principalmente nas pastas:
-```txt
-public/images/
-```
-e:
 ```txt
 public/img/
 ```
