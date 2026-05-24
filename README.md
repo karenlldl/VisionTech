@@ -209,7 +209,7 @@ https://github.com/karenlldl/VisionTech
 ```
 Vídeo de apresentação
 ```txt
-Em breve
+https://youtu.be/auBoavuDg28
 ```
 Link da Solução
 ```txt
