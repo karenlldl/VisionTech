@@ -211,9 +211,18 @@ Vídeo de apresentação
 ```txt
 Em breve
 ```
+Link da Solução
 ```txt
 https://vision-tech-platform.vercel.app/
 ```
+Usuários para login na plataforma:
+Admin
+E-mail: dentista@vision.com
+Senha: 123456
+
+Dentista
+E-mail: vision@vision.com
+Senha: 123456
 ---
 ## 📬 Contato
 Para dúvidas, sugestões ou informações sobre o projeto:
