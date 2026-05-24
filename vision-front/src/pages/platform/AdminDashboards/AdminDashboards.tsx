@@ -14,7 +14,6 @@ const prioridadeOptions = ["Todas", "Baixa", "Média", "Alta"];
 const statusOptions = ["Todos", "Sem dentista", "Aguardando", "Em atendimento", "Concluído"];
 const faixaEtariaOptions = ["Todas", "0-7 anos", "8-12 anos", "13-17 anos", "18+ anos"];
 
-// MOCK: Mantido estático pois o banco de dados não possui coluna de Data de Cadastro
 const evolucaoDataMock = [{ name: "2025-03", value: 4 }, { name: "2025-04", value: 1 }, { name: "2026-04", value: 2 }, { name: "2026-05", value: 1 }];
 
 const DashboardCard = ({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) => (
@@ -28,9 +27,8 @@ const DashboardCard = ({ title, description, children }: { title: string; descri
 const AdminDashboards = () => {
   const [pacientes, setPacientes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [nomeAdminLogado, setNomeAdminLogado] = useState("Carregando...");
+  const [nomeAdminLogado, setNomeAdminLogado] = useState("Administrador");
 
-  // Filtros
   const [filtroOrigem, setFiltroOrigem] = useState("Todas");
   const [filtroPrioridade, setFiltroPrioridade] = useState("Todas");
   const [filtroStatus, setFiltroStatus] = useState("Todos");
@@ -66,46 +64,47 @@ const AdminDashboards = () => {
       try {
         const API_URL = import.meta.env.VITE_API_URL;
         const idLogado = localStorage.getItem("idUsuarioLogado") || "11";
-        try {
-          const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`);
-          if (resAdmin.ok) {
+        
+        const resAdmin = await fetch(`${API_URL}/funcionarios/${idLogado}`).catch(() => null);
+        if (resAdmin && resAdmin.ok) {
             const adminData = await resAdmin.json();
-            setNomeAdminLogado(adminData.nome || "Administrador");
-          }
-        } catch {
-          setNomeAdminLogado("Administrador");
+            setNomeAdminLogado(adminData?.nome || "Administrador");
         }
 
         const [resPainel, resGeral] = await Promise.all([
-          fetch(`${API_URL}/pacientes/painel-admin]`),
-          fetch(`${API_URL}/pacientes`)
+          fetch(`${API_URL}/pacientes/painel-admin`).catch(() => null),
+          fetch(`${API_URL}/pacientes`).catch(() => null)
         ]);
 
-        if (resPainel.ok && resGeral.ok) {
+        if (resPainel && resPainel.ok && resGeral && resGeral.ok) {
           const painelJson = await resPainel.json();
           const geralJson = await resGeral.json();
 
           const mapRenda = new Map();
-          geralJson.forEach((p: any) => mapRenda.set(p.id, p.rendaMedia || 0));
+          if (Array.isArray(geralJson)) {
+            geralJson.forEach((p: any) => mapRenda.set(p.id, p.rendaMedia || 0));
+          }
 
-          const formatados = painelJson.map((item: any) => {
-            const dentista = item.dentista || item.nmDentista || null;
-            const statusRaw = item.status || item.stStatusAtendimento || null;
-            const escola = item.escola || "Cadastro Externo";
-            const isExterno = escola.toLowerCase().includes("externo");
-            
-            return {
-              id: item.id || item.idPaciente,
-              dentista: dentista,
-              idade: item.idade || 0,
-              escola: escola,
-              rendaMedia: mapRenda.get(item.id || item.idPaciente) || 0,
-              status: traduzirStatus(statusRaw, dentista),
-              prioridade: traduzirPrioridade(item.gravidade),
-              origem: isExterno ? "Externo" : "Escola"
-            };
-          });
-          setPacientes(formatados);
+          if (Array.isArray(painelJson)) {
+            const formatados = painelJson.map((item: any) => {
+              const dentista = item.dentista || item.nmDentista || null;
+              const statusRaw = item.status || item.stStatusAtendimento || null;
+              const escola = item.escola || "Cadastro Externo";
+              const isExterno = escola.toLowerCase().includes("externo");
+              
+              return {
+                id: item.id || item.idPaciente,
+                dentista: dentista,
+                idade: item.idade || 0,
+                escola: escola,
+                rendaMedia: mapRenda.get(item.id || item.idPaciente) || 0,
+                status: traduzirStatus(statusRaw, dentista),
+                prioridade: traduzirPrioridade(item.gravidade),
+                origem: isExterno ? "Externo" : "Escola"
+              };
+            });
+            setPacientes(formatados);
+          }
         }
       } catch (error) {
         console.error("Erro ao buscar dados reais para dashboards:", error);
