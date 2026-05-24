@@ -15,21 +15,21 @@ Instituição: FIAP — Faculdade de Informática e Administração Paulista
 Projeto desenvolvido no contexto: Challenge FIAP + Turma do Bem
 ---
 ## 🚀 Tecnologias Utilizadas
-O projeto foi desenvolvido utilizando as seguintes tecnologias:
-React
-Vite
-TypeScript
-Tailwind CSS
-React Router DOM
-React Hook Form
-Lucide React
-Framer Motion
-tw-animate-css
-Java
-API REST
-Oracle Database
-Git e GitHub
-Vercel
+O projeto foi desenvolvido utilizando as seguintes tecnologias:<br>
+React<br>
+Vite<br>
+TypeScript<br>
+Tailwind CSS<br>
+React Router DOM<br>
+React Hook Form<br>
+Lucide React<br>
+Framer Motion<br>
+tw-animate-css<br>
+Java<br>
+API REST<br>
+Oracle Database<br>
+Git e GitHub<br>
+Vercel<br>
 ---
 ## 📦 Principais Dependências NPM
 As principais dependências utilizadas no front-end são:
