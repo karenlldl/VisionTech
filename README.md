@@ -186,7 +186,7 @@ Imagens institucionais.
 ## 💻 Como Usar o Projeto
 1. Clone o repositório
 ```bash
-git clone COLOQUE_AQUI_O_LINK_DO_REPOSITORIO
+git clone https://github.com/karenlldl/VisionTech
 ```
 2. Acesse a pasta do projeto
 ```bash
@@ -214,8 +214,6 @@ Vídeo de apresentação
 ```txt
 Em breve
 ```
-O vídeo ainda será publicado no YouTube.
-Projeto hospedado na Vercel
 ```txt
 https://vision-tech-platform.vercel.app/
 ```
